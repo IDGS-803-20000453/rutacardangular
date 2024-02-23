@@ -1,0 +1,36 @@
+<div class="login-container" @fadeInAnimation [ngStyle]="{'background-image': 'url(assets/fondo-login.png)', 'background-size': 'cover', 'background-position': 'center', 'height': '100vh'}">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Registrarse</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="signUp()">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="nombre" name="nombre" placeholder="Ingresa tu nombre">
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input matInput [(ngModel)]="apellido" name="apellido" placeholder="Ingresa tu apellido">
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email" name="email" placeholder="Ingresa tu email" type="email">
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Crea una contraseña">
+          </mat-form-field>
+          
+          <button mat-raised-button color="primary" type="submit">Registrarse</button>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a></p>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

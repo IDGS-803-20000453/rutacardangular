@@ -1,0 +1,20 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .dashboard-card {
+    height: 100%;
+  }
+  
+  .welcome-card, .actions-card {
+    background: #eceff1;
+  }
+  
+  .actions-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  

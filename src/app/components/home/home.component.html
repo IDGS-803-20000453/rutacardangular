@@ -1,0 +1,18 @@
+<div class="products-container" @fadeIn>
+    <mat-grid-list cols="3" rowHeight="350px" gutterSize="20px">
+      <mat-grid-tile *ngFor="let product of products">
+        <mat-card>
+          <img src="{{ product.imageUrl }}" alt="{{ product.name }}" style="align-self: center; max-height: 200px; width: auto; object-fit: cover;">
+          <mat-card-content>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button style="background-color: #00796b; color: white; border-radius: 4px;">Agregar al carrito</button>
+            <span class="price">${{ product.price }}</span>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  

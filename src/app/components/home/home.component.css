@@ -1,0 +1,52 @@
+/* Estilos para el contenedor de productos */
+.products-container {
+    margin: 20px;
+  }
+  
+  /* Estilos para el grid list */
+  mat-grid-list {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Estilos base para mat-card */
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+    cursor: pointer; /* Opcional: Cambia el cursor para indicar que el elemento es interactivo */
+  }
+  
+  /* Estilos para el efecto de hover en mat-card */
+  mat-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Estilos adicionales para el contenido de la tarjeta y el botón */
+  .mat-card-content {
+    display: block;
+    padding: 10px;
+    text-align: justify;
+  }
+  
+  .mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 10px;
+  }
+  
+  .price {
+    font-weight: bold;
+  }
+  
+  button.mat-button {
+    background-color: #00796b;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  button.mat-button:hover {
+    background-color: #004d40;
+  }
+  

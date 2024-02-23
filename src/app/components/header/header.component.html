@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <a href="/" class="logo">
+    <img src="assets/logo-rutacard.png" alt="RutaCard Logo" style="height: 40px;">
+  </a>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/">Inicio</button>
+  <button mat-button routerLink="/products">Productos</button>
+  
+  <ng-container *ngIf="authService.isLoggedIn | async; else loggedOut">
+    <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut>Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Cuenta de usuario">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/pedidos">Mis Pedidos</button>
+      <button mat-menu-item routerLink="/envios">Mis Envíos</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="authService.logout()">Cerrar sesión</button>
+    </mat-menu>
+  </ng-container>
+  <ng-template #loggedOut>
+    <button mat-button routerLink="/login">Iniciar sesión</button>
+    <button mat-button routerLink="/signup">Registrarse</button>
+  </ng-template>
+  
+  <button mat-icon-button routerLink="/cart">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+<br>
+<br>
+<br>

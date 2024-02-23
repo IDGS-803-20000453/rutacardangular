@@ -1,0 +1,58 @@
+<div class="dashboard">
+    <mat-grid-list cols="3" rowHeight="300px">
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Pedidos Pendientes</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>5 pedidos aún no procesados.</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Envíos Pendientes</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>2 envíos pendientes de confirmación.</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Inventario</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Gráfico de inventario aquí (estático).</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+    <mat-card class="welcome-card">
+      <mat-card-header>
+        <mat-card-title>Bienvenido, Admin</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Consejo del día: "Revisa tu inventario semanalmente para evitar desabastecimientos".</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="actions-card">
+      <mat-card-header>
+        <mat-card-title>Acciones Rápidas</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="actions-container">
+        <button mat-raised-button color="primary" aria-label="Crear nuevo producto">
+          <mat-icon>add_circle_outline</mat-icon> Nuevo Producto
+        </button>
+        <button mat-raised-button color="accent" aria-label="Gestionar inventario">
+          <mat-icon>inventory_2</mat-icon> Gestionar Inventario
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

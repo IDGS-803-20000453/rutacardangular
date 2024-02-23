@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <a href="/" class="logo">
+      <img src="assets/logo-rutacard.png" alt="RutaCard Logo" style="height: 40px;">
+    </a>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/admin/home">Inicio</button>
+    <button mat-button routerLink="/admin/products">Productos</button>
+    <button mat-button routerLink="/admin/categories">Categorías</button>
+    <button mat-button routerLink="/admin/orders">Pedidos</button>
+    <button mat-button routerLink="/admin/shippings">Envíos</button>
+    <button mat-button routerLink="/admin/suppliers">Proveedores</button>
+    <button mat-button routerLink="/admin/users">Usuarios</button>
+    
+    <ng-container *ngIf="authService.isLoggedIn | async">
+      <button mat-icon-button [matMenuTriggerFor]="adminMenu" aria-label="Cuenta de administrador">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </button>
+      <mat-menu #adminMenu="matMenu">
+        <button mat-menu-item routerLink="/admin/account-settings">Configuraciones de la Cuenta</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="authService.logout()">Cerrar sesión</button>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar>
+  

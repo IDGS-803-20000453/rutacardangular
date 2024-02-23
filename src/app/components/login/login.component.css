@@ -1,0 +1,31 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-card {
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Ajusta la transparencia según necesites */
+    backdrop-filter: blur(10px); /* Ajusta el nivel de difuminado según prefieras */
+    border-radius: 8px; /* Opcional: para bordes redondeados */
+  }
+  
+  
+  a {
+    color: #00796b; /* Un color que evoque el tema del agua */
+  }
+  
+
+  
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+  }
+  
