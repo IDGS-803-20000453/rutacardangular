@@ -52,6 +52,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent as AdminHeaderComponent } from './components/admin/header/header.component';
 import { HomeComponent as AdminHomeComponent } from './components/admin/home/home.component';
+import { CompleteVerificationComponent } from './components/complete-verification/complete-verification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import { HomeComponent as AdminHomeComponent } from './components/admin/home/hom
     ForgotPasswordComponent,
     AdminHeaderComponent,
     AdminHomeComponent,
+    CompleteVerificationComponent,
   ],
   imports: [
     BrowserModule,

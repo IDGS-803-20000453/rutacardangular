@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,8 +11,9 @@ export class SignupComponent {
   apellido: string = '';
   email: string = '';
   password: string = '';
+  registrationSuccess: boolean = false; // Nueva propiedad para controlar la visibilidad
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService) { }
 
   signUp() {
     const user = {
@@ -23,14 +23,12 @@ export class SignupComponent {
       password: this.password
     };
 
-    this.apiService.signUp(user).subscribe({
+    this.apiService.startVerification(user).subscribe({
       next: (response) => {
-        // Manejar la respuesta exitosa, por ejemplo redirigiendo al usuario a la página de inicio de sesión o directamente al dashboard
         console.log('Registro exitoso', response);
-        this.router.navigate(['/login']); // Opcional: Redirigir al inicio de sesión
+        this.registrationSuccess = true; // Oculta el formulario y muestra el mensaje de éxito
       },
       error: (error) => {
-        // Manejar errores de registro aquí
         console.error('Error en el registro', error);
       }
     });

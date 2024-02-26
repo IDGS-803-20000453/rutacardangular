@@ -1,0 +1,20 @@
+.registration-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+}
+
+.registration-success-card {
+    width: 350px; /* Ajustado para posiblemente acomodar un texto más largo */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Hecho un poco más opaco para mejorar la legibilidad */
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+
+a {
+    color: #00796b;
+    text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+}
