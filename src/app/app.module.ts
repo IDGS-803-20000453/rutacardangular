@@ -53,6 +53,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent as AdminHeaderComponent } from './components/admin/header/header.component';
 import { HomeComponent as AdminHomeComponent } from './components/admin/home/home.component';
 import { CompleteVerificationComponent } from './components/complete-verification/complete-verification.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { GenericModalComponent } from './components/admin/modals/generic-modal/generic-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +69,8 @@ import { CompleteVerificationComponent } from './components/complete-verificatio
     AdminHeaderComponent,
     AdminHomeComponent,
     CompleteVerificationComponent,
+    CategoriesComponent,
+    GenericModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +115,7 @@ import { CompleteVerificationComponent } from './components/complete-verificatio
     MatTreeModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

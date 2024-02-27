@@ -1,0 +1,25 @@
+<div *ngFor="let field of data.fields">
+    <div [ngSwitch]="field.type">
+      <!-- Etiqueta para el campo -->
+      <label>{{field.label}}</label>
+  
+      <!-- Campo de texto -->
+      <input *ngSwitchCase="'text'" type="text" [name]="field.name" [(ngModel)]="field.value" [placeholder]="field.placeholder"/>
+    
+      <!-- Campo numérico -->
+      <input *ngSwitchCase="'number'" type="number" [name]="field.name" [(ngModel)]="field.value" [placeholder]="field.placeholder"/>
+    
+      <!-- Campo select -->
+      <select *ngSwitchCase="'select'" [name]="field.name" [(ngModel)]="field.value">
+        <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
+      </select>
+
+      <!-- Botón -->
+    <button *ngSwitchCase="'button'" mat-raised-button [color]="field.action === 'create' ? 'primary' : 'accent'" (click)="onAction(field.action)">
+        <mat-icon>{{field.icon}}</mat-icon> crear
+      </button>
+    
+      <!-- Puedes añadir más tipos de campos aquí según sea necesario -->
+    </div>
+  </div>
+  

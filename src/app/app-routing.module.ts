@@ -7,6 +7,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent as AdminHomeComponent } from './components/admin/home/home.component';
 import {CompleteVerificationComponent} from './components/complete-verification/complete-verification.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'home', component:HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'admin', component: AdminHomeComponent},
   {path: 'complete-verification', component: CompleteVerificationComponent},
+  {path: 'admin/categories', component: CategoriesComponent},
 
 ];
 

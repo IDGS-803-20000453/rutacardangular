@@ -1,0 +1,30 @@
+
+  
+
+  /* generic-modal.component.css */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  
+  button[mat-raised-button] {
+    margin: 8px;
+    font-weight: bold;
+  }
+  
