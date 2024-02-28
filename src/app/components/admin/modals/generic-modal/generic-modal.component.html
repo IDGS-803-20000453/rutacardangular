@@ -1,25 +1,31 @@
 <div *ngFor="let field of data.fields">
-    <div [ngSwitch]="field.type">
-      <!-- Etiqueta para el campo -->
-      <label>{{field.label}}</label>
-  
-      <!-- Campo de texto -->
-      <input *ngSwitchCase="'text'" type="text" [name]="field.name" [(ngModel)]="field.value" [placeholder]="field.placeholder"/>
-    
-      <!-- Campo numérico -->
-      <input *ngSwitchCase="'number'" type="number" [name]="field.name" [(ngModel)]="field.value" [placeholder]="field.placeholder"/>
-    
-      <!-- Campo select -->
-      <select *ngSwitchCase="'select'" [name]="field.name" [(ngModel)]="field.value">
-        <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
-      </select>
+  <div [ngSwitch]="field.type">
+    <!-- Etiqueta para el campo -->
+    <label>{{field.label}}</label>
 
-      <!-- Botón -->
-    <button *ngSwitchCase="'button'" mat-raised-button [color]="field.action === 'create' ? 'primary' : 'accent'" (click)="onAction(field.action)">
-        <mat-icon>{{field.icon}}</mat-icon> crear
-      </button>
-    
-      <!-- Puedes añadir más tipos de campos aquí según sea necesario -->
-    </div>
-  </div>
-  
+    <!-- Campo de texto -->
+    <input *ngSwitchCase="'text'" type="text"
+           [attr.name]="field.name"
+           [(ngModel)]="field.value"
+           [attr.placeholder]="field.placeholder"/>
+
+    <!-- Campo numérico -->
+    <input *ngSwitchCase="'number'" type="number"
+           [attr.name]="field.name"
+           [(ngModel)]="field.value"
+           [attr.placeholder]="field.placeholder"/>
+
+    <!-- Campo select -->
+    <select *ngSwitchCase="'select'" [attr.name]="field.name" [(ngModel)]="field.value">
+      <option *ngFor="let option of field.options" [value]="option.value">{{option.label}}</option>
+    </select>
+
+    <!-- Botón (crear o editar) -->
+<button *ngIf="field.type === 'button'" mat-raised-button
+[color]="field.action === 'create' ? 'primary' : 'accent'"
+(click)="onAction(field.action, data)">
+<mat-icon>{{field.icon}}</mat-icon> {{field.label}}
+</button>
+
+            
+</div>

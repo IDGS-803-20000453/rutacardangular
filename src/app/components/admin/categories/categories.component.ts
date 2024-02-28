@@ -32,54 +32,122 @@ export class CategoriesComponent implements OnInit {
   
 
   ngOnInit() {
-    this.getCategories(); // Llama a tu función para obtener las categorías desde el servicio
+    this.getCategories(); 
   }
 
   getCategories() {
     this.authApiService.getCategories().subscribe({
 
       next: (data) => {
-        this.dataSource.data = data; // Actualiza el dataSource con los datos recibidos
+        console.log("Datos recibidos:", data); 
+
+        this.dataSource.data = data; 
         if (this.paginator) {
           this.dataSource.paginator = this.paginator;
         }
       },
       error: (err) => console.error(err),
-      // Puedes manejar los errores aquí si es necesario
     });
   }
 
   onAddCategory() {
     const dialogRef = this.dialog.open(GenericModalComponent, {
-      width: '250px', // Ajusta el ancho según tus necesidades
+      width: '250px',
       data: {
         action: 'create',
         fields: [
           { type: 'text', name: 'nombre', label: 'Nombre', placeholder: 'Escribe el nombre', value: '' },
           { type: 'text', name: 'descripcion', label: 'Descripción', placeholder: 'Escribe una descripción', value: '' },
           { type: 'button', action: 'create', icon: 'add' },
-
         ]
       }
-      
     });
   
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // Aquí puedes manejar los datos de retorno si es necesario
+    dialogRef.afterClosed().subscribe((formDataArray: any[]) => { 
+      if (formDataArray) {
+        const formData = formDataArray.reduce((acc: any, field: any) => { 
+          if (field.name === 'nombre' || field.name === 'descripcion') {
+            acc[field.name] = field.value;
+          }
+          return acc;
+        }, {});
+        
+        console.log("Datos transformados para enviar a la API:", formData);
+    
+        this.authApiService.insertCategory(formData).subscribe({
+          next: (response) => {
+            console.log("Categoría creada con éxito", response);
+            this.getCategories(); // Refresca la lista de categorías
+          },
+          error: (error) => {
+            console.error("Error al crear la categoría", error);
+          }
+        });
+      }
     });
-  }
+    
+    
+    
+}
+
   
+onEditCategory(element: any) {
+  const dialogRef = this.dialog.open(GenericModalComponent, {
+    width: '250px',
+    data: {
+      action: 'edit',
+      fields: [
+        { type: 'text', name: 'nombre', label: 'Nombre', placeholder: 'Escribe el nombre', value: element.nombre },
+        { type: 'text', name: 'descripcion', label: 'Descripción', placeholder: 'Escribe una descripción', value: element.descripcion },
+        { type: 'button', action: 'edit', icon: 'edit' },
+      ],
+      categoryId: element.categoriaID
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      const updateData = {
+        categoriaID: result.categoryId,
+        nombre: result.fields.find((f: { name: string; }) => f.name === 'nombre').value,
+        descripcion: result.fields.find((f: { name: string; }) => f.name === 'descripcion').value,
+      };
+
+      this.authApiService.updateCategory(updateData).subscribe({
+        next: (response) => {
+          console.log("Categoría actualizada con éxito", response);
+          this.getCategories(); // Refresca la lista de categorías
+        },
+        error: (error) => {
+          console.error("Error al actualizar la categoría", error);
+        }
+      });
+    }
+  });
+}
+
+
+
   
-  onEditCategory(element: any) {
-    // Lógica para editar una categoría existente
-    // Puedes usar 'element' para obtener los datos de la categoría a editar
+onDeleteCategory(element: any) {
+  // Confirmación antes de eliminar, opcional pero recomendado
+  const confirmation = confirm("¿Estás seguro de que deseas eliminar esta categoría?");
+  if (!confirmation) {
+    return;
   }
-  
-  onDeleteCategory(element: any) {
-    // Lógica para eliminar una categoría
-    // Usa 'element' para identificar la categoría a eliminar
-  }
+
+  // Llamada al servicio para eliminar la categoría
+  this.authApiService.deleteCategory(element.categoriaID).subscribe({
+    next: (response) => {
+      console.log("Categoría eliminada con éxito", response);
+      this.getCategories(); // Refresca la lista de categorías para reflejar la eliminación
+    },
+    error: (error) => {
+      console.error("Error al eliminar la categoría", error);
+    }
+  });
+}
+
   
 
   applyFilter(event: Event) {

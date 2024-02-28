@@ -9,6 +9,7 @@ private categoriesUrl = 'https://localhost:7248/api/Categorias';
 constructor(private http: HttpClient) { }
 
 insertCategory(category: any): Observable<any> {
+  console.log("Datos del formulario desde el servicio:", category); // Asegúrate de que category tenga los datos correctos
   return this.http.post(this.categoriesUrl, category);
 }
 getCategories(): Observable<any> {
@@ -18,8 +19,10 @@ deleteCategory(id: number): Observable<any> {
   return this.http.delete(`${this.categoriesUrl}/${id}`);
 }
 updateCategory(category: any): Observable<any> {
-  return this.http.put(`${this.categoriesUrl}/${category.id}`, category);
+  // Asegúrate de que la URL y el método HTTP coincidan con tu backend
+  return this.http.put(`${this.categoriesUrl}/${category.categoriaID}`, category);
 }
+
 
 
 }

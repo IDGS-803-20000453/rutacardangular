@@ -16,10 +16,16 @@ export class GenericModalComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  formData: any = {};
 
-  onAction(action: string) {
-    console.log(`Acción ${action} ejecutada.`);
-    // Aquí puedes manejar las acciones de crear, editar, etc.
+  onAction(action: string, data: any) {
+    console.log("Acción:", action, "Datos del formulario:", this.data.fields);
+    // Cierra el modal y pasa los datos de los campos directamente junto con la acción
+    this.dialogRef.close({ action: action, fields: this.data.fields, categoryId: this.data.categoryId });
   }
+  
+  
+  
+  
   
 }
