@@ -1,0 +1,18 @@
+.product-container{
+    margin: 20px;
+}
+table{
+    width: 100%;
+}
+.product-container{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+mat-form-field{
+    width: 100%;
+}
+table{
+    width: 100%;
+    margin-top: 20px;
+}

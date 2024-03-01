@@ -16,9 +16,10 @@
            [attr.placeholder]="field.placeholder"/>
 
     <!-- Campo select -->
-    <select *ngSwitchCase="'select'" [attr.name]="field.name" [(ngModel)]="field.value">
-      <option *ngFor="let option of field.options" [value]="option.value">{{option.label}}</option>
+    <select *ngSwitchCase="'select'" [name]="field.name" [(ngModel)]="field.value">
+      <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
     </select>
+    
 
     <!-- Botón (crear o editar) -->
 <button *ngIf="field.type === 'button'" mat-raised-button
@@ -26,6 +27,9 @@
 (click)="onAction(field.action, data)">
 <mat-icon>{{field.icon}}</mat-icon> {{field.label}}
 </button>
+
+<!-- En tu modal genérico -->
+<input *ngSwitchCase="'file'" type="file" (change)="onFileSelected($event, field.name)" />
 
             
 </div>

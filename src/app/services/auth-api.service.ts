@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthApiService {
+// --------------------- categories ---------------------
 private categoriesUrl = 'https://localhost:7248/api/Categorias';
 constructor(private http: HttpClient) { }
 
@@ -23,6 +24,22 @@ updateCategory(category: any): Observable<any> {
   return this.http.put(`${this.categoriesUrl}/${category.categoriaID}`, category);
 }
 
+// --------------------- products ---------------------
+private productsUrl = 'https://localhost:7248/api/Productos';
 
+insertProduct(product: any): Observable<any> {
+  console.log("Datos del formulario desde el servicio:", product); // Asegúrate de que product tenga los datos correctos
+  return this.http.post(this.productsUrl, product);
+}
+getProducts(): Observable<any> {
+  return this.http.get(this.productsUrl);
+}
+deleteProduct(id: number): Observable<any> {
+  return this.http.delete(`${this.productsUrl}/${id}`);
+}
+updateProduct(product: any): Observable<any> {
+  // Asegúrate de que la URL y el método HTTP coincidan con tu backend
+  return this.http.put(`${this.productsUrl}/${product.productoID}`, product);
+}
 
 }

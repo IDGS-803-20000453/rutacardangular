@@ -19,10 +19,40 @@ export class GenericModalComponent {
   formData: any = {};
 
   onAction(action: string, data: any) {
-    console.log("Acción:", action, "Datos del formulario:", this.data.fields);
-    // Cierra el modal y pasa los datos de los campos directamente junto con la acción
-    this.dialogRef.close({ action: action, fields: this.data.fields, categoryId: this.data.categoryId });
+    let formData: any = {};
+
+    // Itera sobre cada campo en data.fields para llenar formData
+    this.data.fields.forEach((field: any) => {
+      if (field.type !== 'button' && field.type !== 'file') {
+        formData[field.name] = field.value;
+      }
+    });
+
+    // Si hay un archivo seleccionado, lo incluimos directamente en el objeto que se devuelve.
+    // No intentamos incluirlo en formData porque formData se construye a partir de data.fields,
+    // y el archivo no es parte de esos campos de manera directa.
+    if (this.selectedFile) {
+        // Cierra el modal y pasa el archivo junto con formData y la acción
+        this.dialogRef.close({ action, formData, file: this.selectedFile });
+    } else {
+        // Si no hay archivo, solo devuelve formData y la acción
+        this.dialogRef.close({ action, formData });
+    }
+}
+
+
+  selectedFile: File | null = null;
+
+onFileSelected(event: Event, fieldName: string) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (file) {
+    this.selectedFile = file;
   }
+}
+
+  
+
+  
   
   
   

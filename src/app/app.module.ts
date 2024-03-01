@@ -56,6 +56,7 @@ import { CompleteVerificationComponent } from './components/complete-verificatio
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { GenericModalComponent } from './components/admin/modals/generic-modal/generic-modal.component';
+import { ProductsComponent } from './components/admin/products/products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { GenericModalComponent } from './components/admin/modals/generic-modal/g
     CompleteVerificationComponent,
     CategoriesComponent,
     GenericModalComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
