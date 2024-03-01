@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  private baseUrl = 'https://localhost:7248/api/Usuarios/SignUp';
-  private loginUrl = 'https://localhost:7248/api/Usuarios/Login';
-  private resetPasswordUrl = 'https://localhost:7248/api/Usuarios/ForgotPassword';
-  private resetPassword2 = 'https://localhost:7248/api/Usuarios/ResetPassword';
+ 
+  private baseUrl = 'https://localhost/api/Usuarios/SignUp';
+  private loginUrl = 'https://localhost/api/Usuarios/Login';
+  private resetPasswordUrl = 'https://localhost/api/Usuarios/ForgotPassword';
+  private resetPassword2 = 'https://localhost/api/Usuarios/ResetPassword';
   private startVerificationUrl = 'https://localhost:7248/api/Usuarios/StartVerification';
   private completeVerificationUrl = 'https://localhost:7248/api/Usuarios/CompleteRegistration';
   constructor(private http: HttpClient) { }
