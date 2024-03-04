@@ -16,3 +16,9 @@ table{
     width: 100%;
     margin-top: 20px;
 }
+.product-image {
+    width: 100px;
+    height: auto;
+    border-radius: 20px;
+  }
+  

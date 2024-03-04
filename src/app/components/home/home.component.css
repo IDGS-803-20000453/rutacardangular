@@ -49,4 +49,6 @@
   button.mat-button:hover {
     background-color: #004d40;
   }
-  
+  mat-form-field{
+    width: 100%;
+}

@@ -8,10 +8,10 @@
   
   <ng-container *ngIf="authService.isLoggedIn | async; else loggedOut">
     <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut>Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Cuenta de usuario">
+    <button mat-icon-button [matMenuTriggerFor]="menuUsuario" aria-label="Cuenta de usuario">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menuUsuario="matMenu">
       <button mat-menu-item routerLink="/pedidos">Mis Pedidos</button>
       <button mat-menu-item routerLink="/envios">Mis Envíos</button>
       <mat-divider></mat-divider>
@@ -23,9 +23,58 @@
     <button mat-button routerLink="/signup">Registrarse</button>
   </ng-template>
   
-  <button mat-icon-button routerLink="/cart">
+  <button mat-icon-button [matMenuTriggerFor]="menuCarrito" aria-label="Carrito de compras" class="position-relative">
     <mat-icon>shopping_cart</mat-icon>
+    <span *ngIf="totalProductos > 0" class="badge">{{ totalProductos }}</span>
   </button>
+  
+  
+  <mat-menu #menuCarrito="matMenu">
+    <!-- Botón para vaciar el carrito, mostrado solo si hay productos en el carrito -->
+    <div *ngIf="(productosCarrito ?? []).length > 0" mat-menu-item class="vaciar-carrito" (click)="vaciarCarrito(); $event.stopPropagation()">
+      <mat-icon>remove_shopping_cart</mat-icon>
+      Vaciar Carrito
+    </div>
+    <mat-divider *ngIf="(productosCarrito ?? []).length > 0"></mat-divider>
+    
+    <ng-container *ngIf="productosCarrito?.length; else carritoVacio">
+      <ng-container *ngFor="let producto of productosCarrito; let i = index">
+        <div mat-menu-item class="custom-menu-item" (click)="$event.stopPropagation()">
+          <img [src]="producto.imagenURL" alt="{{producto.nombre}}" class="product-image">
+          <div class="product-info">
+            {{producto.nombre}} - Cantidad: {{producto.cantidad}} - Precio: ${{producto.precio}}
+          </div>
+          <div class="product-actions">
+            <button mat-icon-button color="primary" (click)="quitarProducto(producto.productoID); $event.stopPropagation()">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="agregarProducto(producto.productoID); $event.stopPropagation()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+        
+        <mat-divider></mat-divider>
+      </ng-container>
+      <!-- Sección del total general -->
+      <div mat-menu-item class="custom-menu-item total-general">
+        <strong>Total General:</strong> ${{totalGeneral}}
+      </div>
+      <button mat-menu-item>Ver carrito completo</button>
+    </ng-container>
+  
+    <ng-template #carritoVacio>
+      <div mat-menu-item class="custom-menu-item">
+        El carrito está vacío.
+      </div>
+    </ng-template>
+  </mat-menu>
+
+  
+  
+  
+  
+   
 </mat-toolbar>
 <br>
 <br>

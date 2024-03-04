@@ -18,3 +18,63 @@ mat-toolbar {
     color: #fff;
     font-weight: 500;
   }
+
+  .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+  .custom-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .total-general {
+    font-weight: bold;
+    color: #000;
+    background-color: #f0f0f0; /* Color de fondo suave para destacar el total general */
+    margin-top: 10px; /* Espacio antes del total general */
+  }
+  .vaciar-carrito {
+    color: #D32F2F; /* Color rojo para destacar la acción de vaciar el carrito */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-info {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+  
+  .product-actions button {
+    margin: 0 2px;
+  }
+  
+  /* Mejoras visuales para los botones de acción */
+  .product-actions mat-icon {
+    font-size: 20px; /* Tamaño del icono */
+  }
+  
+  /* Asegúrate de que los dividers sean visibles */
+  mat-divider {
+    margin: 5px 0;
+  }
+  

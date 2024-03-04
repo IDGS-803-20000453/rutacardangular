@@ -42,4 +42,42 @@ updateProduct(product: any): Observable<any> {
   return this.http.put(`${this.productsUrl}/${product.productoID}`, product);
 }
 
+// --------------------- carritos ---------------------
+private cartsUrl = 'https://localhost:7248/api/Carritos';
+
+addOrUpdateProductToCart(usuarioID: number, productoID: number, cantidad: number): Observable<any> {
+  const url = `${this.cartsUrl}/AgregarOActualizarProducto/${usuarioID}/${productoID}/${cantidad}`;
+  return this.http.post(url, {}); // El cuerpo de la petición está vacío
+  }
+  
+  obtenerDetalleCarritoPorUsuario(usuarioID: number): Observable<any> {
+    const url = `${this.cartsUrl}/DetalleCarritoPorUsuario/${usuarioID}`;
+    return this.http.get(url);
+  }
+
+  vaciarCarrito(usuarioID: number): Observable<any> {
+    // Incluir usuarioId como un parámetro de consulta en la URL
+    const url = `${this.cartsUrl}/VaciarCarrito?usuarioId=${usuarioID}`;
+    console.log(`URL final: ${url}`); // Esto debería mostrar la URL correctamente formada
+    // Para un POST donde se espera que los parámetros vayan en la URL, puedes enviar un objeto vacío o el objeto que necesites en el cuerpo
+    // Si el backend no espera un cuerpo, puedes enviar un objeto vacío o null
+    return this.http.post(url, {});
+}
+
+reducirProductoDelCarrito(usuarioID: number, productoID: number): Observable<any> {
+  const url = `${this.cartsUrl}/ReducirProducto?usuarioId=${usuarioID}&productoId=${productoID}`;
+  return this.http.post(url, {});
+}
+
+
+AgregarOActualizarProducto(usuarioID: number, productoID: number, cantidad: number): Observable<any> {
+  const url = `${this.cartsUrl}/AgregarOActualizarProducto/${usuarioID}/${productoID}/${cantidad}`;
+  console.log(`URL final: ${url}`); // Esto debería mostrar la URL correctamente formada
+
+  return this.http.post(url, {});
+}
+
+
+
+  
 }
