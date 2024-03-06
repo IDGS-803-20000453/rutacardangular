@@ -1,81 +1,36 @@
-<mat-toolbar color="primary">
-  <a href="/" class="logo">
-    <img src="assets/logo-rutacard.png" alt="RutaCard Logo" style="height: 40px;">
+<mat-toolbar color="primary" style="background-color: white; color: #333; box-shadow: 0 5px 4px rgba(100, 164, 255, 0.5);">
+  <a href="/" class="logo" style="margin-top: 20px;">
+    <img src="assets/rotacart.png" alt="RutaCard Logo" style="height: 150px;">
   </a>
+  
   <span class="spacer"></span>
-  <button mat-button routerLink="/">Inicio</button>
-  <button mat-button routerLink="/products">Productos</button>
+  <button mat-button routerLink="/" style="color: #333;">Inicio</button>
+  <button mat-button routerLink="/products" style="color: #333;">Productos</button>
   
   <ng-container *ngIf="authService.isLoggedIn | async; else loggedOut">
-    <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut>Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
-    <button mat-icon-button [matMenuTriggerFor]="menuUsuario" aria-label="Cuenta de usuario">
-      <mat-icon>account_circle</mat-icon>
+    <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut style="color: #333;">Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Cuenta de usuario">
+      <mat-icon style="color: #333;">account_circle</mat-icon>
     </button>
-    <mat-menu #menuUsuario="matMenu">
-      <button mat-menu-item routerLink="/pedidos">Mis Pedidos</button>
-      <button mat-menu-item routerLink="/envios">Mis Envíos</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/pedidos" style="color: #333;">Mis Pedidos</button>
+      <button mat-menu-item routerLink="/envios" style="color: #333;">Mis Envíos</button>
       <mat-divider></mat-divider>
-      <button mat-menu-item (click)="authService.logout()">Cerrar sesión</button>
+      <button mat-menu-item (click)="authService.logout()" style="color: #333;">Cerrar sesión</button>
     </mat-menu>
   </ng-container>
   <ng-template #loggedOut>
-    <button mat-button routerLink="/login">Iniciar sesión</button>
-    <button mat-button routerLink="/signup">Registrarse</button>
+    <button mat-button routerLink="/login" style="color: #333;">Iniciar sesión</button>
+    <button mat-button routerLink="/signup" style="color: #333;">Registrarse</button>
   </ng-template>
   
-  <button mat-icon-button [matMenuTriggerFor]="menuCarrito" aria-label="Carrito de compras" class="position-relative">
+  <button mat-icon-button routerLink="/cart" style="color: #333;">
     <mat-icon>shopping_cart</mat-icon>
-    <span *ngIf="totalProductos > 0" class="badge">{{ totalProductos }}</span>
   </button>
-  
-  
-  <mat-menu #menuCarrito="matMenu">
-    <!-- Botón para vaciar el carrito, mostrado solo si hay productos en el carrito -->
-    <div *ngIf="(productosCarrito ?? []).length > 0" mat-menu-item class="vaciar-carrito" (click)="vaciarCarrito(); $event.stopPropagation()">
-      <mat-icon>remove_shopping_cart</mat-icon>
-      Vaciar Carrito
-    </div>
-    <mat-divider *ngIf="(productosCarrito ?? []).length > 0"></mat-divider>
-    
-    <ng-container *ngIf="productosCarrito?.length; else carritoVacio">
-      <ng-container *ngFor="let producto of productosCarrito; let i = index">
-        <div mat-menu-item class="custom-menu-item" (click)="$event.stopPropagation()">
-          <img [src]="producto.imagenURL" alt="{{producto.nombre}}" class="product-image">
-          <div class="product-info">
-            {{producto.nombre}} - Cantidad: {{producto.cantidad}} - Precio: ${{producto.precio}}
-          </div>
-          <div class="product-actions">
-            <button mat-icon-button color="primary" (click)="quitarProducto(producto.productoID); $event.stopPropagation()">
-              <mat-icon>remove</mat-icon>
-            </button>
-            <button mat-icon-button color="primary" (click)="agregarProducto(producto.productoID); $event.stopPropagation()">
-              <mat-icon>add</mat-icon>
-            </button>
-          </div>
-        </div>
-        
-        <mat-divider></mat-divider>
-      </ng-container>
-      <!-- Sección del total general -->
-      <div mat-menu-item class="custom-menu-item total-general">
-        <strong>Total General:</strong> ${{totalGeneral}}
-      </div>
-      <button mat-menu-item>Ver carrito completo</button>
-    </ng-container>
-  
-    <ng-template #carritoVacio>
-      <div mat-menu-item class="custom-menu-item">
-        El carrito está vacío.
-      </div>
-    </ng-template>
-  </mat-menu>
-
-  
-  
-  
-  
-   
 </mat-toolbar>
+
+
+
 <br>
 <br>
 <br>
