@@ -4,7 +4,7 @@
   </a>
   <span class="spacer"></span>
   <button mat-button routerLink="/">Inicio</button>
-  <button mat-button routerLink="/products">Productos</button>
+  <button mat-button routerLink="/home">Productos</button>
   
   <ng-container *ngIf="authService.isLoggedIn | async; else loggedOut">
     <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut>Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
@@ -60,7 +60,7 @@
       <div mat-menu-item class="custom-menu-item total-general">
         <strong>Total General:</strong> ${{totalGeneral}}
       </div>
-      <button mat-menu-item>Ver carrito completo</button>
+      <button mat-menu-item routerLink="shopping-cart">Ir al carrito</button>
     </ng-container>
   
     <ng-template #carritoVacio>

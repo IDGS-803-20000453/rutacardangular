@@ -2,11 +2,23 @@ import { Input } from '@angular/core';
 import { Component, Inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-generic-modal',
   templateUrl: './generic-modal.component.html',
-  styleUrls: ['./generic-modal.component.css']
+  styleUrls: ['./generic-modal.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter es alias para void => *
+        style({ opacity: 0 }),
+        animate(600, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [   // :leave es alias para * => void
+        animate(600, style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class GenericModalComponent {
   constructor(

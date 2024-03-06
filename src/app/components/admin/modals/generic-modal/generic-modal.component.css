@@ -27,4 +27,45 @@ label {
     margin: 8px;
     font-weight: bold;
   }
-  
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+.payment-success-message {
+    color: #4CAF50; /* Verde vibrante */
+    font-family: 'Poppins', sans-serif; /* Tipografía moderna y limpia */
+    font-size: 32px; /* Tamaño de fuente grande para destacar */
+    font-weight: 600; /* Peso de la fuente para enfatizar */
+    margin: 20px 0;
+    text-align: center;
+    animation: pulseGrow 2s ease-in-out infinite, fadeIn 2s ease-in forwards;
+    border: 2px solid #4CAF50; /* Borde para agregar definición */
+    padding: 10px;
+    border-radius: 10px; /* Bordes redondeados para suavidad */
+    box-shadow: 0 0 15px #4CAF50; /* Sombra sutil para profundidad */
+    background-color: rgba(76, 175, 80, 0.2); /* Fondo suavemente coloreado */
+}
+
+@keyframes pulseGrow {
+    0%, 100% {
+        transform: scale(1); /* Estado inicial y final: sin cambio de escala */
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1); /* Crecer ligeramente */
+        opacity: 0.85;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+
+    

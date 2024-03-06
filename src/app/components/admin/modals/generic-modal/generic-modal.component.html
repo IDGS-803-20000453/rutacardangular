@@ -30,6 +30,19 @@
 
 <!-- En tu modal genérico -->
 <input *ngSwitchCase="'file'" type="file" (change)="onFileSelected($event, field.name)" />
+<!-- Mensaje de pago exitoso -->
+<div *ngFor="let field of data.fields">
+  <div [ngSwitch]="field.type">
+    <!-- Campos existentes... -->
+
+    <!-- Nuevo caso para mensaje -->
+    <div *ngSwitchCase="'message'" class="payment-success-message" [@fadeInOut]>
+      {{ field.message }}
+    </div>
+  </div>
+</div>
+
+
 
             
 </div>

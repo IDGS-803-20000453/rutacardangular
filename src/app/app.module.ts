@@ -57,6 +57,8 @@ import { CategoriesComponent } from './components/admin/categories/categories.co
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { GenericModalComponent } from './components/admin/modals/generic-modal/generic-modal.component';
 import { ProductsComponent } from './components/admin/products/products.component';
+import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/client/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +75,8 @@ import { ProductsComponent } from './components/admin/products/products.componen
     CategoriesComponent,
     GenericModalComponent,
     ProductsComponent,
+    ShoppingCartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

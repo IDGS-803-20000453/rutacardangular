@@ -1,0 +1,10 @@
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .checkout-card {
+    /* Ajusta según tus necesidades de estilo */
+  }
+  
