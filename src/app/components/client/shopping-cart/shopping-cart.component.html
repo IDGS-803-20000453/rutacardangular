@@ -1,0 +1,42 @@
+<div class="shopping-cart-container">
+    <mat-card class="cart-items">
+      <mat-card-title>Detalles del Carrito</mat-card-title>
+      <mat-list>
+        <mat-list-item *ngFor="let producto of productosCarrito">
+          <mat-card class="product-card">
+            <mat-card-header>
+              <div mat-card-avatar class="product-image">
+                <img [src]="producto.imagenURL" alt="{{producto.nombre}}">
+              </div>
+              <mat-card-title>{{ producto.nombre }}</mat-card-title>
+              <mat-card-subtitle>Cantidad: {{ producto.cantidad }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              Precio: ${{ producto.precio }}<br>
+              Peso: {{ producto.peso }} kg<br> <!-- Asumiendo que el peso está en kilogramos -->
+              Volumen: {{ producto.volumen }} m³ <!-- Asumiendo que el volumen está en metros cúbicos -->
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="quitarProducto(producto.id)">Quitar</button>
+              <button mat-button (click)="agregarProducto(producto.id, 1)">Agregar</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-list-item>
+        
+      </mat-list>
+    </mat-card>
+  
+    <mat-card class="order-summary">
+      <mat-card-title>Resumen del Pedido</mat-card-title>
+      <mat-card-content>
+        <p>Total Productos: {{ totalProductos }}</p>
+        <p>Total General: ${{ totalGeneral }}</p>
+        <p>Peso Total: {{ pesoTotal }} kg</p>
+        <p>Volumen Total: {{ volumenTotal }} m³</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="/checkout">Siguiente</button> 
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

@@ -9,6 +9,8 @@ import { HomeComponent as AdminHomeComponent } from './components/admin/home/hom
 import {CompleteVerificationComponent} from './components/complete-verification/complete-verification.component';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 import { ProductsComponent } from './components/admin/products/products.component';
+import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/client/checkout/checkout.component';
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'home', component:HomeComponent },
@@ -20,6 +22,9 @@ const routes: Routes = [
   {path: 'complete-verification', component: CompleteVerificationComponent},
   {path: 'admin/categories', component: CategoriesComponent},
   {path: 'admin/products', component: ProductsComponent},
+  {path: 'shopping-cart', component: ShoppingCartComponent},
+  {path: 'checkout', component: CheckoutComponent},
+
 
 ];
 

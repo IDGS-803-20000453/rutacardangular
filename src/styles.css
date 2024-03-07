@@ -12,3 +12,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-position: center;
   }
   
+  .my-custom-modal .mat-dialog-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important; /* Elimina el padding si es necesario */
+  }
+  
