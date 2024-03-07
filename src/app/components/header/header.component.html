@@ -5,7 +5,7 @@
   
   <span class="spacer"></span>
   <button mat-button routerLink="/" style="color: #333;">Inicio</button>
-  <button mat-button routerLink="/products" style="color: #333;">Productos</button>
+  <button mat-button routerLink="/home" style="color: #333;">Productos</button>
   
   <ng-container *ngIf="authService.isLoggedIn | async; else loggedOut">
     <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut style="color: #333;">Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
