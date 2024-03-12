@@ -59,6 +59,7 @@ import { GenericModalComponent } from './components/admin/modals/generic-modal/g
 import { ProductsComponent } from './components/admin/products/products.component';
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/client/checkout/checkout.component';
+import { ProveedoresComponent } from './components/admin/proveedores/proveedores.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import { CheckoutComponent } from './components/client/checkout/checkout.compone
     ProductsComponent,
     ShoppingCartComponent,
     CheckoutComponent,
+    ProveedoresComponent,
   ],
   imports: [
     BrowserModule,

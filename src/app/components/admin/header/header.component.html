@@ -1,6 +1,6 @@
-<mat-toolbar color="primary">
-    <a href="/" class="logo">
-      <img src="assets/logo-rutacard.png" alt="RutaCard Logo" style="height: 40px;">
+<mat-toolbar color="primary" style="background-color: white; color: #333; box-shadow: 0 5px 4px rgba(100, 164, 255, 0.5);">
+    <a href="/" class="logo" style="margin-top: 20px;">
+      <img src="assets/rotacart.png" alt="RutaCard Logo" style="height: 150px;">
     </a>
     <span class="spacer"></span>
     <button mat-button routerLink="/admin/home">Inicio</button>
@@ -8,7 +8,7 @@
     <button mat-button routerLink="/admin/categories">Categorías</button>
     <button mat-button routerLink="/admin/orders">Pedidos</button>
     <button mat-button routerLink="/admin/shippings">Envíos</button>
-    <button mat-button routerLink="/admin/suppliers">Proveedores</button>
+    <button mat-button routerLink="/admin/proveedores">Proveedores</button>
     <button mat-button routerLink="/admin/users">Usuarios</button>
     
     <ng-container *ngIf="authService.isLoggedIn | async">

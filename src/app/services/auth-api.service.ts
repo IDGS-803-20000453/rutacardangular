@@ -23,7 +23,22 @@ updateCategory(category: any): Observable<any> {
   // Asegúrate de que la URL y el método HTTP coincidan con tu backend
   return this.http.put(`${this.categoriesUrl}/${category.categoriaID}`, category);
 }
-
+// --------------------- proveedores ---------------------
+private proveedoresUrl = 'https://localhost:7248/api/Proveedores';
+insertProveedores(proveedores: any): Observable<any> {
+  console.log("Datos del formulario desde el servicio:", proveedores); // Asegúrate de que category tenga los datos correctos
+  return this.http.post(this.proveedoresUrl, proveedores);
+}
+getProveedores(): Observable<any> {
+  return this.http.get(this.proveedoresUrl);
+}
+deleteProveedores(id: number): Observable<any> {
+  return this.http.delete(`${this.proveedoresUrl}/${id}`);
+}
+updateProveedores(proveedores: any): Observable<any> {
+  // Asegúrate de que la URL y el método HTTP coincidan con tu backend
+  return this.http.put(`${this.proveedoresUrl}/${proveedores.categoriaID}`, proveedores);
+}
 // --------------------- products ---------------------
 private productsUrl = 'https://localhost:7248/api/Productos';
 

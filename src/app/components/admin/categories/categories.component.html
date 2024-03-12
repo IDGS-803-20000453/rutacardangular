@@ -1,10 +1,13 @@
+<br>
+<br>
 <div [@fadeInOut] class="category-container">
     <div class="actions-container">
       <button mat-raised-button color="primary" (click)="onAddCategory()">
         <mat-icon>add</mat-icon> Agregar Categoría
       </button>
     </div>
-    
+   
+
     <mat-form-field appearance="fill">
       <mat-label>Buscar categoría</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Nombre o descripción">

@@ -1,48 +1,8 @@
-<br>
-<br>
-
 <mat-form-field appearance="fill">
   <mat-label>Buscar producto</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Nombre o descripción">
   <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
-<div style="display: flex; justify-content: space-between; margin: 0 -10px 20px; padding: 0 200px;">
-  <mat-card style="width: 25%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 0 10px; overflow: hidden;">
-    <img mat-card-image src="assets/mbbr.jpg" style="width: 100%; height: auto; border-bottom: 1px solid #eee; border-radius: 10px 10px 0 0;">
-    <mat-card-content style="padding: 16px;">
-      <p style="font-weight: bold; font-size: 14px;">Descripción de la tarjeta 1</p>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-        <span style="font-weight: bold; font-size: 16px;">$20.00</span>
-        <button mat-raised-button color="primary" (click)="agregarAlCarrito(1)">Agregar al carrito</button>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card style="width: 25%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 0 10px; overflow: hidden;">
-    <img mat-card-image src="assets/mbbr.jpg" style="width: 100%; height: auto; border-bottom: 1px solid #eee; border-radius: 10px 10px 0 0;">
-    <mat-card-content style="padding: 16px;">
-      <p style="font-weight: bold; font-size: 14px;">Descripción de la tarjeta 2</p>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-        <span style="font-weight: bold; font-size: 16px;">$25.00</span>
-        <button mat-raised-button color="primary" (click)="agregarAlCarrito(2)">Agregar al carrito</button>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card style="width: 25%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 0 10px; overflow: hidden;">
-    <img mat-card-image src="assets/mbbr.jpg" style="width: 100%; height: auto; border-bottom: 1px solid #eee; border-radius: 10px 10px 0 0;">
-    <mat-card-content style="padding: 16px;">
-      <p style="font-weight: bold; font-size: 14px;">Descripción de la tarjeta 3</p>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-        <span style="font-weight: bold; font-size: 16px;">$30.00</span>
-        <button mat-raised-button color="primary" (click)="agregarAlCarrito(3)">Agregar al carrito</button>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-
-
 
 <div class="products-container" @fadeIn>
   <mat-grid-list cols="3" rowHeight="350px" gutterSize="20px">
@@ -64,9 +24,10 @@
   <mat-paginator [length]="allProducts.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)">
   </mat-paginator>
   
-<br>
-<br>
-
-
+    
   </div>
+
+
+
+
   

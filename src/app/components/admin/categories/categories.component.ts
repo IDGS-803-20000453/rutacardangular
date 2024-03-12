@@ -63,17 +63,14 @@ export class CategoriesComponent implements OnInit {
       }
     });
   
-    dialogRef.afterClosed().subscribe((formDataArray: any[]) => { 
-      if (formDataArray) {
-        const formData = formDataArray.reduce((acc: any, field: any) => { 
-          if (field.name === 'nombre' || field.name === 'descripcion') {
-            acc[field.name] = field.value;
-          }
-          return acc;
-        }, {});
+    dialogRef.afterClosed().subscribe(result => {
+      // Verifica que el resultado contenga formData
+      if (result && result.formData) {
+        const formData = result.formData; // Ya no necesitas reducir, porque formData es un objeto
         
         console.log("Datos transformados para enviar a la API:", formData);
     
+        // Ahora puedes enviar formData directamente a tu API
         this.authApiService.insertCategory(formData).subscribe({
           next: (response) => {
             console.log("Categoría creada con éxito", response);
@@ -83,12 +80,12 @@ export class CategoriesComponent implements OnInit {
             console.error("Error al crear la categoría", error);
           }
         });
+      } else {
+        console.log('No se recibieron datos válidos del formulario o la acción fue cancelada');
       }
     });
-    
-    
-    
 }
+  
 
   
 onEditCategory(element: any) {
