@@ -1,44 +1,53 @@
 <div class="checkout-container">
-    <mat-card class="checkout-card">
+  <mat-card class="checkout-card">
       <mat-card-title>Dirección de Envío</mat-card-title>
       <mat-card-content>
-        <!-- Formulario de Dirección de Envío -->
-        <!-- Asumiendo que usarás formularios reactivos o basados en plantillas -->
-        <form>
-          <!-- Campos del formulario como dirección, ciudad, etc. -->
-        </form>
+          <!-- Formulario de Dirección de Envío -->
+          <!-- Asumiendo que usarás formularios reactivos o basados en plantillas -->
+          <form>
+              <div class="mb-4">
+                  <label for="direccion" class="block text-gray-700 text-sm font-bold mb-2">Dirección:</label>
+                  <input type="text" id="direccion" name="direccion" [(ngModel)]="direccionEnvio" class="w-full px-3 py-2 border rounded-md" required>
+              </div>
+              <!-- Otros campos del formulario como ciudad, país, etc. -->
+          </form>
       </mat-card-content>
-    </mat-card>
-  
-    <mat-card class="checkout-card">
-        <mat-card-title>Método de Pago</mat-card-title>
-        <mat-card-content>
+  </mat-card>
+
+  <mat-card class="checkout-card">
+      <mat-card-title>Método de Pago</mat-card-title>
+      <mat-card-content>
           <div id="card-element">
-            <!-- Un elemento de Stripe se montará aquí. -->
+              <!-- Un elemento de Stripe se montará aquí. -->
           </div>
           <div id="card-errors" role="alert"></div>
           <!-- Mensajes de error se mostrarán aquí. -->
-        </mat-card-content>
-      </mat-card>
-      
-      <mat-card class="checkout-card">
-        <!-- Otros detalles del pedido -->
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
-        </mat-card-actions>
-      </mat-card>
-      
-  
-    <mat-card class="checkout-card">
-      <mat-card-title>Resumen del Pedido</mat-card-title>
-      <mat-card-content>
-        <p>Peso Total: {{ pesoTotal }} kg</p>
-        <p>Volumen Total: {{ volumenTotal }} m³</p>
-        <!-- Aquí puedes añadir más detalles si lo deseas -->
       </mat-card-content>
+  </mat-card>
+
+  <mat-card class="checkout-card">
+      <!-- Otros detalles del pedido -->
       <mat-card-actions>
-        <button mat-raised-button color="primary">Finalizar Pedido</button>
+          <button mat-raised-button color="primary" (click)="finalizarPago()">Finalizar pago</button>
       </mat-card-actions>
-    </mat-card>
-  </div>
+  </mat-card>
+
+  <mat-card class="checkout-card">
+    <mat-card-title>Resumen del Pedido</mat-card-title>
+    <mat-card-content>
+      <p>Peso Total: {{ pesoTotal }} kg</p>
+      <p>Volumen Total: {{ volumenTotal }} m³</p>
+      <p>Total productos: {{ totalProductos }}</p>
+      <p>Direccion: {{ direccionEnvio }}</p>
+      <p>Total general: {{ totalGeneral }}</p>
+ 
+      <!-- Aquí puedes añadir más detalles si lo deseas -->
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="finalizarPedido()">Finalizar Pedido</button>
+    
+    </mat-card-actions>
+  </mat-card>
   
+  
+</div>

@@ -17,8 +17,11 @@ table{
     margin-top: 20px;
 }
 .product-image {
-    width: 100px;
+    width: 500px;
     height: auto;
     border-radius: 20px;
+  }
+  .custom-modal {
+    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
   }
   

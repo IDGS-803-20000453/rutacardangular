@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthApiService } from 'src/app/services/auth-api.service';
 import { loadStripe } from '@stripe/stripe-js';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericModalComponent } from '../../admin/modals/generic-modal/generic-modal.component';
+
 
 @Component({
   selector: 'app-checkout',
@@ -11,31 +12,31 @@ import { GenericModalComponent } from '../../admin/modals/generic-modal/generic-
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  stripePromise = loadStripe('pk_test_51OrEqv2NKBfmHsAE02C4x4BzphBoaI4SXUlsD848rCJwYygfzSWkeYPn4PfXDfsrHEyFoofxT5Ey8P0BPFjLfnZw00aRIrQ3G3')
+  stripePromise = loadStripe('pk_test_51OrEqv2NKBfmHsAE02C4x4BzphBoaI4SXUlsD848rCJwYygfzSWkeYPn4PfXDfsrHEyFoofxT5Ey8P0BPFjLfnZw00aRIrQ3G3');
   elements: any;
   card: any;
-  cardElement: any;
   totalGeneral: number = 0;
   productosCarrito: any[] = [];
   totalProductos: number = 0;
   pesoTotal: number = 0;
   volumenTotal: number = 0;
+  direccionEnvio: string = ''; // Inicializar la variable como una cadena vacía
+
 
   constructor(
-    
-  public authService: AuthService,
-  public authApiService: AuthApiService,
-  public dialog: MatDialog,
-  private cdr: ChangeDetectorRef
+    public authService: AuthService,
+    public authApiService: AuthApiService,
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) { }
-  
+
 
   ngOnInit() {
     this.cargarTotalesCarrito();
     this.inicializarStripe();
   }
-  ngOndestroy() {
-    if(this.card) {
+  ngOnDestroy() {
+    if (this.card) {
       this.card.destroy();
     }
   }
@@ -67,10 +68,10 @@ export class CheckoutComponent implements OnInit {
   }
   async inicializarStripe() {
     const stripe = await this.stripePromise;
-if (!stripe) {
-  console.error('Stripe no ha sido inicializado');
-  return;
-}
+    if (!stripe) {
+      console.error('Stripe no ha sido inicializado');
+      return;
+    }
 
     const elements = stripe.elements();
     var style = {
@@ -98,41 +99,72 @@ if (!stripe) {
         if (displayError) displayError.textContent = '';
       }
     });
-    
+
   }
 
-async finalizarPedido() {
-  const stripe = await this.stripePromise;
-if (!stripe) {
-  console.error('Stripe no ha sido inicializado');
-  return;
-}
+  async finalizarPago() {
+    const stripe = await this.stripePromise;
+    if (!stripe) {
+      console.error('Stripe no ha sido inicializado');
+      return;
+    }
 
-  const {token, error} = await stripe.createToken(this.card);
-  if (error) {
-    console.error('Error al crear token:', error);
-  } else {
-    console.log('Token:', token);
-    this.dialog.open(GenericModalComponent, {
-      width: '250px',
-      panelClass: 'my-custom-modal', // Clase única para este modal
-      hasBackdrop: false, // Evita el oscurecimiento del fondo
-      data: {
-        fields: [
-          {
-            type: 'message',
-            message: 'Pago exitoso!'
-          }
-        ]
+    const { token, error } = await stripe.createToken(this.card);
+    if (error) {
+      console.error('Error al crear token:', error);
+    } else {
+      console.log('Token:', token);
+      this.dialog.open(GenericModalComponent, {
+        width: '250px',
+        panelClass: 'my-custom-modal', // Clase única para este modal
+        hasBackdrop: false, // Evita el oscurecimiento del fondo
+        data: {
+          fields: [
+            {
+              type: 'message',
+              message: 'Pago exitoso!'
+            }
+          ]
+        }
+      });
+    }
+
+  }
+  async finalizarPedido() {
+    const stripe = await this.stripePromise;
+    if (!stripe) {
+      console.error('Stripe no ha sido inicializado');
+      return;
+    }
+
+    try {
+      const { token, error } = await stripe.createToken(this.card);
+      if (error) {
+        console.error('Error al crear token:', error);
+      } else {
+        console.log('Token:', token);
+        this.mostrarResumenCompra(); // Llamar a la función para mostrar el resumen de la compra
       }
-    });
-    
-    
+    } catch (error) {
+      console.error('Error al crear el token:', error);
+    }
   }
-  
-}
 
-ngOnChanges(): void {
-  this.cdr.detectChanges();
-}
+  mostrarResumenCompra() {
+    let mensaje = 'Resumen del Pedido:\n';
+    mensaje += `Peso Total: ${this.pesoTotal} kg\n`;
+    mensaje += `Volumen Total: ${this.volumenTotal} m³\n`;
+    mensaje += `Total productos: ${this.totalProductos}\n`;
+    mensaje += `Direccion: ${this.direccionEnvio}\n`;
+    mensaje += `Total general: ${this.totalGeneral}\n\n`;
+    mensaje += 'Productos:\n';
+    this.productosCarrito.forEach(producto => {
+      mensaje += `${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: ${producto.precio}\n`;
+    });
+    alert(mensaje); // Mostrar los detalles del pedido en una alerta
+  }
+
+  ngOnChanges(): void {
+    this.cdr.detectChanges();
+  }
 }

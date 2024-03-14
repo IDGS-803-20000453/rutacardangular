@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit{
 
   onAddProduct() {
     const dialogRef = this.dialog.open(GenericModalComponent, {
-      width: '250px',
+      width: '550px',
       data: {
         action: 'create',
         fields: [
@@ -132,7 +132,7 @@ uploadFileToCloudinary(file: File): Observable<any> {
 
 onEditProduct(element: any) {
   const dialogRef = this.dialog.open(GenericModalComponent, {
-      width: '250px',
+      width: '550px',
       data: {
           action: 'update',
           fields: [

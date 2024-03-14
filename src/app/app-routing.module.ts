@@ -12,6 +12,10 @@ import { ProductsComponent } from './components/admin/products/products.componen
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/client/checkout/checkout.component';
 import { ProveedoresComponent } from './components/admin/proveedores/proveedores.component';
+import { AboutComponent } from './components/about/about.component';
+import { PedidosComponent } from './components/admin/pedidos/pedidos.component';
+import { EnviosComponent } from './components/admin/envios/envios.component';
+
 
 const routes: Routes = [
   { path: '', component:HomeComponent },
@@ -27,6 +31,10 @@ const routes: Routes = [
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'admin/proveedores', component: ProveedoresComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'admin/envios', component: EnviosComponent },
+  {path: 'admin/pedidos', component: PedidosComponent}
+
 
 
 ];

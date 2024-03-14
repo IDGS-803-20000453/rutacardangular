@@ -60,6 +60,9 @@ import { ProductsComponent } from './components/admin/products/products.componen
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/client/checkout/checkout.component';
 import { ProveedoresComponent } from './components/admin/proveedores/proveedores.component';
+import { PedidosComponent } from './components/admin/pedidos/pedidos.component';
+import { EnviosComponent } from './components/admin/envios/envios.component';
+import { AboutComponent } from './components/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +82,9 @@ import { ProveedoresComponent } from './components/admin/proveedores/proveedores
     ShoppingCartComponent,
     CheckoutComponent,
     ProveedoresComponent,
+    PedidosComponent,
+    EnviosComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

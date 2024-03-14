@@ -1,37 +1,32 @@
+<br>
+<br>
 <div class="dashboard">
-    <mat-grid-list cols="3" rowHeight="300px">
-      <mat-grid-tile>
-        <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>Pedidos Pendientes</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>5 pedidos aún no procesados.</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>Envíos Pendientes</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>2 envíos pendientes de confirmación.</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>Inventario</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>Gráfico de inventario aquí (estático).</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="col-span-1">
+      <div class="dashboard-card h-full bg-white p-6 rounded-md shadow-md">
+        <h3 class="text-xl font-semibold mb-4">Pedidos Pendientes</h3>
+        <p>5 pedidos aún no procesados.</p>
+      </div>
+    </div>
   
+    <div class="col-span-1">
+      <div class="dashboard-card h-full bg-white p-6 rounded-md shadow-md">
+        <h3 class="text-xl font-semibold mb-4">Envíos Pendientes</h3>
+        <p>2 envíos pendientes de confirmación.</p>
+      </div>
+    </div>
+  
+    <div class="col-span-1">
+      <div class="dashboard-card h-full bg-white p-6 rounded-md shadow-md">
+        <h3 class="text-xl font-semibold mb-4">Inventario</h3>
+        <p>Gráfico de inventario aquí (estático).</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <br>
+  <br>
     <mat-card class="welcome-card">
       <mat-card-header>
         <mat-card-title>Bienvenido, Admin</mat-card-title>

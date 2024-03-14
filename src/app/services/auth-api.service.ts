@@ -56,8 +56,22 @@ updateProduct(product: any): Observable<any> {
   // Asegúrate de que la URL y el método HTTP coincidan con tu backend
   return this.http.put(`${this.productsUrl}/${product.productoID}`, product);
 }
+// --------------------- envios ---------------------
+
+private enviosUrl = 'https://localhost:7248/api/Envios';
+
+patchEnvio(envio: any): Observable<any> {
+  return this.http.patch(`${this.enviosUrl}/${envio.envioID}`, envio);
+}
+putEnvio(envio: any): Observable<any> {
+  return this.http.put(`${this.enviosUrl}/${envio.envioID}`, envio);
+}
+getEnvio(id: number): Observable<any> {
+  return this.http.get<any>('URL_DEL_ENDPOINT_PARA_OBTENER_UNICO_ENVIO/' + id);
+}
 
 // --------------------- carritos ---------------------
+
 private cartsUrl = 'https://localhost:7248/api/Carritos';
 
 addOrUpdateProductToCart(usuarioID: number, productoID: number, cantidad: number): Observable<any> {
