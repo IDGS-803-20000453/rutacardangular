@@ -87,14 +87,18 @@ export class ProveedoresComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      console.log("Resultado del diálogo:", result); // Esto mostrará lo que sea que se esté pasando al cerrar el diálogo
+
+      if (result && result.formData) { // Asegúrate de que formData existe
+        console.log("Datos del formulario desde el componente:", result.formData);
         const updateData = {
-          proveedorID: result.proveedorId,
-          nombre: result.fields.find((f: { name: string; }) => f.name === 'nombre').value,
-          direccion: result.fields.find((f: { name: string; }) => f.name === 'direccion').value,
-          telefono: result.fields.find((f: { name: string; }) => f.name === 'telefono').value,
-          email: result.fields.find((f: { name: string; }) => f.name === 'email').value,
+          proveedorID: element.proveedorID, // Asegúrate de que este dato se maneja correctamente
+          nombre: result.formData.nombre,
+          direccion: result.formData.direccion,
+          telefono: result.formData.telefono,
+          email: result.formData.email,
         };
+        console.log("Datos transformados para enviar a la API:", updateData);
 
         this.authApiService.updateProveedores(updateData).subscribe({
           next: (response) => {
@@ -107,7 +111,8 @@ export class ProveedoresComponent {
         });
       }
     });
-  }
+}
+
 
   onDeleteProveedores(element: any) {
     const confirmation = confirm("¿Estás seguro de que deseas eliminar este proveedor?");

@@ -103,12 +103,17 @@ onEditCategory(element: any) {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    if (result) {
+    console.log("catID", element.categoriaID)
+    console.log("Resultado del diálogo:", result); // Esto te mostrará la estructura de result
+
+    if (result && result.formData) {
+      // Asegúrate de que formData existe y luego accede directamente a sus propiedades
       const updateData = {
-        categoriaID: result.categoryId,
-        nombre: result.fields.find((f: { name: string; }) => f.name === 'nombre').value,
-        descripcion: result.fields.find((f: { name: string; }) => f.name === 'descripcion').value,
+        categoriaID : element.categoriaID,
+        nombre: result.formData.nombre,
+        descripcion: result.formData.descripcion,
       };
+      console.log("Datos de actualización:", updateData);
 
       this.authApiService.updateCategory(updateData).subscribe({
         next: (response) => {
@@ -122,6 +127,7 @@ onEditCategory(element: any) {
     }
   });
 }
+
 
 
 

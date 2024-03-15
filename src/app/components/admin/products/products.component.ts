@@ -131,6 +131,8 @@ uploadFileToCloudinary(file: File): Observable<any> {
   
 
 onEditProduct(element: any) {
+  const currentImagenURL = element.imagenURL;
+
   const dialogRef = this.dialog.open(GenericModalComponent, {
       width: '550px',
       data: {
@@ -157,8 +159,11 @@ onEditProduct(element: any) {
   });
 
   dialogRef.afterClosed().subscribe(result => {
+    console.log('Resultado del modal:', result);
       if (result && result.action) {
           const formData = { ...result.formData, productoID: element.productoID }; // Incluye el ID del producto en formData
+          console.log('ImagenURL después de editar, antes de procesar:', formData.imagenURL); // Esto imprimirá undefined si no se seleccionó un nuevo archivo
+
           if (result.file) {
               // Si hay un archivo, primero lo subimos a Cloudinary
               this.uploadFileToCloudinary(result.file).subscribe(cloudinaryResponse => {
@@ -166,6 +171,8 @@ onEditProduct(element: any) {
                   this.processUploadFormData(formData, true); // Indica que es una actualización
               });
           } else {
+            formData.imagenURL = currentImagenURL;
+
               // Si no se seleccionó un nuevo archivo, procede sin cambiar la imagenURL
               this.processUploadFormData(formData, true); // Indica que es una actualización
           }

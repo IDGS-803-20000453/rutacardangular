@@ -20,7 +20,7 @@ deleteCategory(id: number): Observable<any> {
   return this.http.delete(`${this.categoriesUrl}/${id}`);
 }
 updateCategory(category: any): Observable<any> {
-  // Asegúrate de que la URL y el método HTTP coincidan con tu backend
+  console.log("Datos del formulario desde el servicio:", category); // Asegúrate de que category tenga los datos correctos
   return this.http.put(`${this.categoriesUrl}/${category.categoriaID}`, category);
 }
 // --------------------- proveedores ---------------------
@@ -35,9 +35,8 @@ getProveedores(): Observable<any> {
 deleteProveedores(id: number): Observable<any> {
   return this.http.delete(`${this.proveedoresUrl}/${id}`);
 }
-updateProveedores(proveedores: any): Observable<any> {
-  // Asegúrate de que la URL y el método HTTP coincidan con tu backend
-  return this.http.put(`${this.proveedoresUrl}/${proveedores.categoriaID}`, proveedores);
+updateProveedores(provider: any): Observable<any> {
+  return this.http.put(`${this.proveedoresUrl}/${provider.proveedorID}`, provider);
 }
 // --------------------- products ---------------------
 private productsUrl = 'https://localhost:7248/api/Productos';
@@ -53,7 +52,6 @@ deleteProduct(id: number): Observable<any> {
   return this.http.delete(`${this.productsUrl}/${id}`);
 }
 updateProduct(product: any): Observable<any> {
-  // Asegúrate de que la URL y el método HTTP coincidan con tu backend
   return this.http.put(`${this.productsUrl}/${product.productoID}`, product);
 }
 // --------------------- envios ---------------------
