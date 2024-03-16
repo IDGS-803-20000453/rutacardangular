@@ -104,6 +104,19 @@ AgregarOActualizarProducto(usuarioID: number, productoID: number, cantidad: numb
   return this.http.post(url, {});
 }
 
+// --------------------- Pedidos ---------------------
+private ordersUrl = 'https://localhost:7248/api/Pedidos';
+
+getAllOrdersGroup(): Observable<any> {
+  const url = `${this.ordersUrl}/PedidoEnvio/Agrupado/Todos`;
+  return this.http.get(url);
+}
+
+getAllOrders(): Observable<any> {
+  const url = `${this.ordersUrl}/PedidoEnvio/Todos`;
+  return this.http.get(url);
+}
+
 
 
   
