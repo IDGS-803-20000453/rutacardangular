@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthApiService {
 // --------------------- categories ---------------------
-private categoriesUrl = 'https://localhost:7248/api/Categorias';
+private categoriesUrl = 'https://www.bazarapi.somee.com/api/Categorias';
 constructor(private http: HttpClient) { }
 
 insertCategory(category: any): Observable<any> {
@@ -24,7 +24,7 @@ updateCategory(category: any): Observable<any> {
   return this.http.put(`${this.categoriesUrl}/${category.categoriaID}`, category);
 }
 // --------------------- proveedores ---------------------
-private proveedoresUrl = 'https://localhost:7248/api/Proveedores';
+private proveedoresUrl = 'https://www.bazarapi.somee.com/api/Proveedores';
 insertProveedores(proveedores: any): Observable<any> {
   console.log("Datos del formulario desde el servicio:", proveedores); // Asegúrate de que category tenga los datos correctos
   return this.http.post(this.proveedoresUrl, proveedores);
@@ -39,7 +39,7 @@ updateProveedores(provider: any): Observable<any> {
   return this.http.put(`${this.proveedoresUrl}/${provider.proveedorID}`, provider);
 }
 // --------------------- products ---------------------
-private productsUrl = 'https://localhost:7248/api/Productos';
+private productsUrl = 'https://www.bazarapi.somee.com/api/Productos';
 
 insertProduct(product: any): Observable<any> {
   console.log("Datos del formulario desde el servicio:", product); // Asegúrate de que product tenga los datos correctos
@@ -56,7 +56,7 @@ updateProduct(product: any): Observable<any> {
 }
 // --------------------- envios ---------------------
 
-private enviosUrl = 'https://localhost:7248/api/Envios';
+private enviosUrl = 'https://www.bazarapi.somee.com/api/Envios';
 
 patchEnvio(envio: any): Observable<any> {
   return this.http.patch(`${this.enviosUrl}/${envio.envioID}`, envio);
@@ -70,7 +70,7 @@ getEnvio(id: number): Observable<any> {
 
 // --------------------- carritos ---------------------
 
-private cartsUrl = 'https://localhost:7248/api/Carritos';
+private cartsUrl = 'https://www.bazarapi.somee.com/api/Carritos';
 
 addOrUpdateProductToCart(usuarioID: number, productoID: number, cantidad: number): Observable<any> {
   const url = `${this.cartsUrl}/AgregarOActualizarProducto/${usuarioID}/${productoID}/${cantidad}`;
@@ -105,7 +105,7 @@ AgregarOActualizarProducto(usuarioID: number, productoID: number, cantidad: numb
 }
 
 // --------------------- Pedidos ---------------------
-private ordersUrl = 'https://localhost:7248/api/Pedidos';
+private ordersUrl = 'https://www.bazarapi.somee.com/api/Pedidos';
 
 getAllOrdersGroup(): Observable<any> {
   const url = `${this.ordersUrl}/PedidoEnvio/Agrupado/Todos`;
