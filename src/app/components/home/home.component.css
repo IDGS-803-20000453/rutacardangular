@@ -1,6 +1,9 @@
 /* Estilos para el contenedor de productos */
 .products-container {
-    margin: 20px;
+    margin: 150px;
+    margin-top: 20px; /* Ajusta este valor según sea necesario */
+
+
   }
   
   /* Estilos para el grid list */
