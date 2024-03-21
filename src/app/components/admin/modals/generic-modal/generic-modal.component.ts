@@ -60,6 +60,8 @@ onFileSelected(event: Event, fieldName: string) {
   if (file) {
     this.selectedFile = file;
   }
+  
+  
 }
 
   

@@ -5,7 +5,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericModalComponent } from '../../admin/modals/generic-modal/generic-modal.component';
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -21,7 +20,7 @@ export class CheckoutComponent implements OnInit {
   pesoTotal: number = 0;
   volumenTotal: number = 0;
   direccionEnvio: string = ''; // Inicializar la variable como una cadena vacía
-
+  mostrarResumen: boolean = false; // Agregar esta variable para controlar la visibilidad del modal
 
   constructor(
     public authService: AuthService,
@@ -30,11 +29,11 @@ export class CheckoutComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) { }
 
-
   ngOnInit() {
     this.cargarTotalesCarrito();
     this.inicializarStripe();
   }
+
   ngOnDestroy() {
     if (this.card) {
       this.card.destroy();
@@ -66,6 +65,7 @@ export class CheckoutComponent implements OnInit {
       console.error('Usuario no autenticado.');
     }
   }
+
   async inicializarStripe() {
     const stripe = await this.stripePromise;
     if (!stripe) {
@@ -99,7 +99,6 @@ export class CheckoutComponent implements OnInit {
         if (displayError) displayError.textContent = '';
       }
     });
-
   }
 
   async finalizarPago() {
@@ -114,22 +113,10 @@ export class CheckoutComponent implements OnInit {
       console.error('Error al crear token:', error);
     } else {
       console.log('Token:', token);
-      this.dialog.open(GenericModalComponent, {
-        width: '250px',
-        panelClass: 'my-custom-modal', // Clase única para este modal
-        hasBackdrop: false, // Evita el oscurecimiento del fondo
-        data: {
-          fields: [
-            {
-              type: 'message',
-              message: 'Pago exitoso!'
-            }
-          ]
-        }
-      });
+      this.mostrarResumenCompra(); // Llamar a la función para mostrar el resumen de la compra
     }
-
   }
+
   async finalizarPedido() {
     const stripe = await this.stripePromise;
     if (!stripe) {
@@ -151,17 +138,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   mostrarResumenCompra() {
-    let mensaje = 'Resumen del Pedido:\n';
-    mensaje += `Peso Total: ${this.pesoTotal} kg\n`;
-    mensaje += `Volumen Total: ${this.volumenTotal} m³\n`;
-    mensaje += `Total productos: ${this.totalProductos}\n`;
-    mensaje += `Direccion: ${this.direccionEnvio}\n`;
-    mensaje += `Total general: ${this.totalGeneral}\n\n`;
-    mensaje += 'Productos:\n';
-    this.productosCarrito.forEach(producto => {
-      mensaje += `${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: ${producto.precio}\n`;
-    });
-    alert(mensaje); // Mostrar los detalles del pedido en una alerta
+    this.mostrarResumen = true; // Mostrar el modal de resumen
+  }
+
+  cerrarModal(): void {
+    this.mostrarResumen = false; // Cerrar el modal de resumen
   }
 
   ngOnChanges(): void {

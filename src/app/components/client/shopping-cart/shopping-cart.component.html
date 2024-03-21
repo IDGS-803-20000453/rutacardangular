@@ -1,44 +1,46 @@
 <br>
-<div class="shopping-cart-container mx-auto px-20">
-  <mat-card class="cart-items w-full md:w-1/2 lg:w-1/3">
-      <mat-card-title class="text-center">Detalles del Carrito</mat-card-title>
-      <mat-list>
-          <mat-list-item *ngFor="let producto of productosCarrito" class="mb-4">
-              <mat-card class="product-card">
-                  <mat-card-header class="flex items-center">
-                      <div mat-card-avatar class="product-image mr-4">
-                          <img [src]="producto.imagenURL" alt="{{producto.nombre}}" class="w-16 h-16 object-cover rounded-full">
-                      </div>
-                      <div>
-                          <mat-card-title>{{ producto.nombre }}</mat-card-title>
-                          <mat-card-subtitle>Cantidad: {{ producto.cantidad }}</mat-card-subtitle>
-                      </div>
-                  </mat-card-header>
-                  <mat-card-content>
-                      <p class="mb-2">Precio: ${{ producto.precio }}</p>
-                      <p class="mb-2">Peso: {{ producto.peso }} kg</p>
-                      <p class="mb-2">Volumen: {{ producto.volumen }} m³</p>
-                  </mat-card-content>
-                  <mat-card-actions>
-                      <button mat-button (click)="quitarProducto(producto.id)" class="mr-2">Quitar</button>
-                      <button mat-button (click)="agregarProducto(producto.id, 1)">Agregar</button>
-                  </mat-card-actions>
-              </mat-card>
-          </mat-list-item>
-      </mat-list>
-  </mat-card>
-
-  <mat-card class="order-summary w-full md:w-1/2 lg:w-1/3">
-      <mat-card-title class="text-center">Resumen del Pedido</mat-card-title>
-      <mat-card-content>
-          <p>Total Productos: {{ totalProductos }}</p>
-          <p>Total General: ${{ totalGeneral }}</p>
-          <p>Peso Total: {{ pesoTotal }} kg</p>
-          <p>Volumen Total: {{ volumenTotal }} m³</p>
-
-      </mat-card-content>
-      <mat-card-actions class="justify-center">
-          <button mat-raised-button color="primary" routerLink="/checkout">Siguiente</button>
-      </mat-card-actions>
-  </mat-card>
+<div class="flex justify-center justify-center items-center h-screen"  style="margin-top: -120px;">
+    <div class="max-w-4xl w-full">
+        <mat-card class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8">
+            <mat-card-title class="text-center">Detalles del Carrito</mat-card-title>
+            <mat-list>
+                <mat-list-item *ngFor="let producto of productosCarrito" class="mb-4">
+                    <mat-card class="product-card">
+                        <mat-card-header class="flex items-center">
+                            <div mat-card-avatar class="product-image mr-4">
+                                <img [src]="producto.imagenURL" alt="{{producto.nombre}}" class="w-16 h-16 object-cover rounded-full">
+                            </div>
+                            <div>
+                                <mat-card-title>{{ producto.nombre }}</mat-card-title>
+                                <mat-card-subtitle>Cantidad: {{ producto.cantidad }}</mat-card-subtitle>
+                            </div>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p class="mb-2">Precio: ${{ producto.precio }}</p>
+                            <p class="mb-2">Peso: {{ producto.peso }} kg</p>
+                            <p class="mb-2">Volumen: {{ producto.volumen }} m³</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-button (click)="quitarProducto(producto.id)" class="mr-2">Quitar</button>
+                            <button mat-button (click)="agregarProducto(producto.id, 1)">Agregar</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+        <mat-card class="order-summary bg-white rounded-lg shadow-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8">
+            <mat-card-title class="text-center text-lg font-semibold mb-4">Resumen del Pedido</mat-card-title>
+            <mat-card-content class="text-gray-700">
+                <p class="mb-2">Total Productos: {{ totalProductos }}</p>
+                <p class="mb-2">Total General: ${{ totalGeneral }}</p>
+                <p class="mb-2">Peso Total: {{ pesoTotal }} kg</p>
+                <p class="mb-2">Volumen Total: {{ volumenTotal }} m³</p>
+            </mat-card-content>
+            <mat-card-actions class="flex justify-center">
+                <button mat-raised-button color="primary" routerLink="/checkout" class="w-full md:w-auto bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-300">Siguiente</button>
+            </mat-card-actions>
+        </mat-card>
+        
+    </div>
 </div>
+

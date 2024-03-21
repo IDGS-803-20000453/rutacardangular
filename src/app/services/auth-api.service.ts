@@ -61,12 +61,15 @@ private enviosUrl = 'https://www.bazarapi.somee.com/api/Envios';
 patchEnvio(envio: any): Observable<any> {
   return this.http.patch(`${this.enviosUrl}/${envio.envioID}`, envio);
 }
+
 putEnvio(envio: any): Observable<any> {
   return this.http.put(`${this.enviosUrl}/${envio.envioID}`, envio);
 }
+
 getEnvio(id: number): Observable<any> {
   return this.http.get<any>('URL_DEL_ENDPOINT_PARA_OBTENER_UNICO_ENVIO/' + id);
 }
+
 
 // --------------------- carritos ---------------------
 

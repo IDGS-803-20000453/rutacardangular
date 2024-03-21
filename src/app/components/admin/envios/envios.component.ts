@@ -24,7 +24,6 @@ export class EnviosComponent implements OnInit {
   getPedidos() {
     this.authApiService.getAllOrders().subscribe({
       next: (data) => {
-        console.log("Datos recibidos:", data); 
         this.dataSource.data = data; 
         if (this.paginator) {
           this.dataSource.paginator = this.paginator;
@@ -37,5 +36,10 @@ export class EnviosComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  updateEstadoEnvio(element: any, newEstado: string) {
+    element.estadoEnvio = newEstado;
+    this.dataSource.data = this.dataSource.data.slice();
   }
 }

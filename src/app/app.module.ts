@@ -63,6 +63,7 @@ import { ProveedoresComponent } from './components/admin/proveedores/proveedores
 import { PedidosComponent } from './components/admin/pedidos/pedidos.component';
 import { EnviosComponent } from './components/admin/envios/envios.component';
 import { AboutComponent } from './components/about/about.component';
+
 @NgModule({
   declarations: [
     AppComponent,
