@@ -15,6 +15,7 @@ import { ProveedoresComponent } from './components/admin/proveedores/proveedores
 import { AboutComponent } from './components/about/about.component';
 import { PedidosComponent } from './components/admin/pedidos/pedidos.component';
 import { EnviosComponent } from './components/admin/envios/envios.component';
+import { PedidosClientComponent } from './components/client/pedidos-client/pedidos-client.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,10 @@ const routes: Routes = [
   {path: 'admin/proveedores', component: ProveedoresComponent},
   {path: 'about', component: AboutComponent},
   {path: 'admin/envios', component: EnviosComponent },
-  {path: 'admin/pedidos', component: PedidosComponent}
+  {path: 'admin/pedidos', component: PedidosComponent},
+  {path: 'client/pedidos-client', component: PedidosClientComponent},
+
+
 
 
 
