@@ -11,22 +11,27 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
 
   constructor(private apiService: ApiService, private authService: AuthService, private router: Router) { }
 
   login() {
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Por favor, complete ambos campos.';
+      return;
+    }
+
     this.apiService.login({ email: this.email, password: this.password })
       .subscribe({
         next: (response) => {
-          this.authService.login(response); // Pasa la respuesta al método login
-  
-          // Accede a la información del usuario almacenada para decidir a dónde redirigir
+          this.authService.login(response);
+
           const user = this.authService.currentUserValue;
-  
+
           if (user?.rolId === 2) { // Cliente
-            this.router.navigate(['/']); // Redirige al home para clientes
+            this.router.navigate(['/']);
           } else if (user?.rolId === 1) { // Admin
-            this.router.navigate(['/admin']); // Redirige al panel de administración
+            this.router.navigate(['/admin']);
           } else {
             // Manejar otros roles o redirigir a una página de error
           }
@@ -34,9 +39,12 @@ export class LoginComponent {
         },
         error: (error) => {
           console.error(error);
-          // Manejar el error de inicio de sesión aquí (mostrar mensaje al usuario, etc.)
+          if (error.status === 401) {
+            this.errorMessage = 'Credenciales inválidas. Por favor, verifique su email y contraseña.';
+          } else {
+            this.errorMessage = 'Se produjo un error al intentar iniciar sesión. Por favor, inténtelo de nuevo más tarde.';
+          }
         }
       });
   }
-  
 }

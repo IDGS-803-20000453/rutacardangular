@@ -19,7 +19,7 @@
       <mat-menu #adminMenu="matMenu">
         <button mat-menu-item routerLink="/admin/account-settings">Configuraciones de la Cuenta</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item (click)="authService.logout()">Cerrar sesión</button>
+        <button (click)="logout()">Cerrar sesión</button>
       </mat-menu>
     </ng-container>
   </mat-toolbar>

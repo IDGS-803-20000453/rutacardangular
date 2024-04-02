@@ -1,45 +1,88 @@
 <br>
 <div [@fadeInOut] class="category-container">
-     
+    <mat-card class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Column Definitions -->
+            <ng-container matColumnDef="pedidoID">
+              <th mat-header-cell *matHeaderCellDef> Pedido ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.pedidoID}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="usuarioID">
+              <th mat-header-cell *matHeaderCellDef> Usuario ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.usuarioID}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="fechaPedido">
+              <th mat-header-cell *matHeaderCellDef> Fecha Pedido </th>
+              <td mat-cell *matCellDef="let element"> {{element.fechaPedido | date:'medium'}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="estadoPedido">
+              <th mat-header-cell *matHeaderCellDef> Estado Pedido </th>
+              <td mat-cell *matCellDef="let element"> {{element.estadoPedido}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Total </th>
+              <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="direccionEnvio">
+              <th mat-header-cell *matHeaderCellDef> Dirección Envío </th>
+              <td mat-cell *matCellDef="let element"> {{element.direccionEnvio}} </td>
+            </ng-container>
+        
+            
+        
+            <!-- Row Definitions -->
+            <tr mat-header-row *matHeaderRowDef="['pedidoID', 'usuarioID', 'fechaPedido', 'estadoPedido', 'total', 'direccionEnvio']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['pedidoID', 'usuarioID', 'fechaPedido', 'estadoPedido', 'total', 'direccionEnvio'];"></tr>
+          </table>
+        <br>
+        <!-- Detalles del pedido seleccionado -->
+        <div *ngIf="selectedProduct" class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-md">
+              <h3 class="text-xl font-semibold mb-4">Detalles del Pedido</h3>
+              <p><strong>ID:</strong> {{ selectedProduct.id }}</p>
+              <p><strong>Fecha:</strong> {{ selectedProduct.fecha }}</p>
+              <p><strong>Total:</strong> ${{ selectedProduct.total }}</p>
+              <!-- Agrega aquí cualquier otro detalle que desees mostrar del pedido -->
+              <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" (click)="closeDetails()">Cerrar</button>
+            </div>
+          </div>
+    </mat-card>
+<!--    
     <mat-card class="mat-elevation-z8">
         <mat-card-content>
             <p class="text-xl font-bold mb-4">Productos</p>
-    
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <!-- Column Definitions -->
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell *matHeaderCellDef> Producto </th>
                     <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
                 </ng-container>
-    
                 <ng-container matColumnDef="cantidad">
                     <th mat-header-cell *matHeaderCellDef> Cantidad </th>
                     <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
                 </ng-container>
-    
                 <ng-container matColumnDef="precio">
                     <th mat-header-cell *matHeaderCellDef> Precio </th>
                     <td mat-cell *matCellDef="let element"> ${{element.precio}} </td>
                 </ng-container>
-    
                 <ng-container matColumnDef="peso">
                     <th mat-header-cell *matHeaderCellDef> Peso </th>
                     <td mat-cell *matCellDef="let element"> {{element.peso}} kg </td>
                 </ng-container>
-    
                 <ng-container matColumnDef="volumen">
                     <th mat-header-cell *matHeaderCellDef> Volumen </th>
                     <td mat-cell *matCellDef="let element"> {{element.volumen}} m³ </td>
                 </ng-container>
-    
-                <!-- Row Definitions -->
                 <tr mat-header-row *matHeaderRowDef="['nombre', 'cantidad', 'precio', 'peso', 'volumen']"></tr>
                 <tr mat-row *matRowDef="let row; columns: ['nombre', 'cantidad', 'precio', 'peso', 'volumen']" (click)="openDetails(row)"></tr>
             </table>
         </mat-card-content>
         <br>
-    
-        <!-- Detalles del producto seleccionado -->
+         Detalles del producto seleccionado
         <div *ngIf="selectedProduct" class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-md max-w-md">
               <h3 class="text-xl font-semibold mb-4">Detalles del Producto</h3>
@@ -51,9 +94,8 @@
               <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" (click)="closeDetails()">Cerrar</button>
             </div>
           </div>
-          
     </mat-card>
-    
+  
 
     <mat-card class="border border-gray-300 shadow-lg rounded-lg">
         <div class="p-6">
@@ -78,7 +120,7 @@
             </div>
         </div>
     </mat-card>
-    
-    
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
 </div>

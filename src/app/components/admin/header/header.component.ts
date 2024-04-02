@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // Importa el Router
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -20,5 +21,14 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 export class HeaderComponent {
-  constructor(public authService: AuthService) { }
+  constructor(
+    public authService: AuthService,
+    private router: Router // Inyecta el Router
+  ) { }
+  logout() {
+    console.log('Cerrando sesión...');
+    this.authService.logout();
+    this.router.navigate(['/']); // Redirige a la página de inicio
+  }
+  
 }

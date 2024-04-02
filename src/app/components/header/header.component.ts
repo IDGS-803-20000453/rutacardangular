@@ -1,65 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthApiService } from 'src/app/services/auth-api.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CarritoEstadoService } from 'src/app/services/carrito-estado.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  animations: [
-    trigger('fadeInOut', [
-      state('in', style({ opacity: 1 })),
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate(600)
-      ]),
-      transition(':leave', [
-        animate(600, style({ opacity: 0 }))
-      ])
-    ])
-  ]
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   totalGeneral: number = 0;
-
   productosCarrito: any[] | null = [];
   totalProductos: number = 0;
   private subs = new Subscription();
 
-  constructor(public authService: AuthService,
-     public authApiService: AuthApiService,
-     private carritoEstadoService: CarritoEstadoService
-     ) { }
+  constructor(
+    public authService: AuthService,
+    public authApiService: AuthApiService,
+    private carritoEstadoService: CarritoEstadoService
+  ) {}
 
-     ngOnInit() {
+  ngOnInit() {
+    this.subs.add(
       this.authService.isLoggedIn.subscribe(isLoggedIn => {
-        if (isLoggedIn) {
-          const currentUser = this.authService.currentUserValue;
-          if (currentUser) {
-            console.log('UsuarioID desde header:', currentUser.usuarioId);
-            this.cargarProductosCarrito();
-            this.subs.add(
-              this.carritoEstadoService.totalProductos$.subscribe(total => {
-                this.totalProductos = total;
-              })
-            );
-            // Suscripción al evento de recarga de productos
-            this.subs.add(
-              this.carritoEstadoService.recargarProductos$.subscribe(() => {
-                this.cargarProductosCarrito();
-              })
-            );
-          }
+        if (!isLoggedIn) {
+          // Limpiar el carrito si el usuario cierra sesión
+          this.productosCarrito = [];
+          this.totalProductos = 0;
+          this.totalGeneral = 0;
         }
-      });
-    }
-    
+      })
+    );
+
+    this.authService.isLoggedIn.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        const currentUser = this.authService.currentUserValue;
+        if (currentUser) {
+          console.log('UsuarioID desde header:', currentUser.usuarioId);
+          this.cargarProductosCarrito();
+          this.subs.add(
+            this.carritoEstadoService.totalProductos$.subscribe(total => {
+              this.totalProductos = total;
+            })
+          );
+          // Suscripción al evento de recarga de productos
+          this.subs.add(
+            this.carritoEstadoService.recargarProductos$.subscribe(() => {
+              this.cargarProductosCarrito();
+            })
+          );
+        }
+      }
+    });
+  }
+  
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
+
   agregarProducto(productoID: number) {
     const usuarioID = this.authService.currentUserValue?.usuarioId;
     if (usuarioID) {
@@ -92,7 +91,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  
   vaciarCarrito() {
     const currentUser = this.authService.currentUserValue;
   
@@ -115,8 +113,6 @@ export class HeaderComponent implements OnInit {
       console.error('Usuario no autenticado.');
     }
   }
-  
-  
 
   cargarProductosCarrito() {
     const usuarioID = this.authService.currentUserValue?.usuarioId;
@@ -139,6 +135,4 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
-  
-  
 }
