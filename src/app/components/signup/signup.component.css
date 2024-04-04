@@ -19,6 +19,21 @@
   }
   
 
+  .password-match {
+    color: green;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el icono y el texto */
+  }
+  
+  .password-mismatch {
+    color: red;
+  }
+  
+  mat-icon {
+    font-size: 20px; /* Ajusta al tamaño que prefieras */
+    height: 20px; /* Igual al font-size para alinear mejor con el texto */
+  }
   
   
   .login-container {

@@ -4,6 +4,7 @@ import { AuthApiService } from 'src/app/services/auth-api.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/services/auth.service';
 import { CarritoEstadoService } from 'src/app/services/carrito-estado.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ pageSize: number = 5; // Número de ítems por página
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator; // Obtiene el paginador (si existe
   constructor(private authApiService: AuthApiService, 
     public authService: AuthService,
-    private carritoEstadoService: CarritoEstadoService
+    private carritoEstadoService: CarritoEstadoService,
+    private router: Router
     ) { } // Inyecta el servicio
 
   ngOnInit(): void {
@@ -38,15 +40,15 @@ pageSize: number = 5; // Número de ítems por página
       console.log('UsuarioID desde home:', currentUser.usuarioId);
     }
   }
-  agregarAlCarrito(productoID: number): void {
-  const currentUser = this.authService.currentUserValue;
+  agregarAlCarrito(productoID: number, event: MouseEvent): void {
+    const currentUser = this.authService.currentUserValue;
+    event.stopPropagation();
+
   if (currentUser && currentUser.usuarioId) {
     console.log('Agregando al carrito:', productoID);
     this.authApiService.addOrUpdateProductToCart(currentUser.usuarioId, productoID, 1).subscribe({
       next: (response) => {
         console.log('Producto agregado al carrito:', response);
-        // Aquí debes obtener el total actualizado del carrito
-        // Esto es un ejemplo, debes ajustarlo según tu API y lógica
         this.authApiService.obtenerDetalleCarritoPorUsuario(currentUser.usuarioId).subscribe({
           next: (productos) => {
             const totalActualizado = productos.reduce((acc: any, producto: { cantidad: any; }) => acc + producto.cantidad, 0);
@@ -61,6 +63,10 @@ pageSize: number = 5; // Número de ítems por página
   }
 }
 
+mostrarDetallesProducto(productoID: number): void {
+  console.log('ID del producto seleccionado:', productoID);
+  this.router.navigate(['/client/product-details', productoID]);
+}
 
   loadProducts() {
     this.authApiService.getProducts().subscribe({

@@ -64,7 +64,8 @@ import { PedidosComponent } from './components/admin/pedidos/pedidos.component';
 import { EnviosComponent } from './components/admin/envios/envios.component';
 import { AboutComponent } from './components/about/about.component';
 import { PedidosClientComponent } from './components/client/pedidos-client/pedidos-client.component';
-
+import { ConfigComponent } from './components/client/config/config.component';
+import { ProductDetailsComponent } from './components/client/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,8 @@ import { PedidosClientComponent } from './components/client/pedidos-client/pedid
     EnviosComponent,
     AboutComponent,
     PedidosClientComponent,
+    ConfigComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,10 @@
   a {
     color: #00796b; /* Un color que evoque el tema del agua */
   }
+  .error-message {
+    color: red;
+    font-size: 14px;
+  }
   
 
   

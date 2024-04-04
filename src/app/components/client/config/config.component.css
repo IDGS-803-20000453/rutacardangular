@@ -1,0 +1,66 @@
+.edit-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f7f6;
+  padding: 20px; /* Añade algo de espacio alrededor para evitar que toque los bordes de la pantalla */
+}
+
+.edit-profile-card {
+  width: 100%;
+  max-width: 600px; /* Ajusta según el máximo que consideres adecuado */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden; /* Asegura que nada se desborde del borde redondeado */
+  border: 1px solid #e0e0e0; /* Línea sutil para más definición */
+  animation: slideIn 0.5s ease-out; /* Animación sutil al cargar */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mat-form-field {
+  width: calc(100% - 40px); /* Ajusta el ancho y resta el padding */
+  margin: 20px; /* Añade más espacio alrededor de cada campo */
+  border-bottom: 1px solid #e0e0e0; /* Línea sutil debajo de cada campo para un look más definido */
+}
+
+.photo-upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Distribuye el espacio de manera más uniforme */
+  margin: 20px;
+  padding: 20px 0;
+  border-top: 1px dashed #e0e0e0; /* Usa una línea punteada para una separación distintiva */
+  border-bottom: 1px dashed #e0e0e0; /* Similar arriba, para contener visualmente la sección */
+}
+
+button {
+  margin: 20px; /* Uniformiza el espacio alrededor de los botones */
+  transition: background-color 0.3s, transform 0.2s; /* Suaviza la interacción con botones */
+}
+
+button:hover {
+  transform: translateY(-2px); /* Un ligero levantamiento al pasar el mouse para un feedback sutil */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra para el efecto "levantado" */
+}
+
+.photo-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00796b; /* Hace la imagen destacar más */
+}
+
+/* Personaliza aún más los inputs y botones según necesites */

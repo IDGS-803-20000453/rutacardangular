@@ -5,7 +5,12 @@ mat-toolbar {
     right: 0;
     z-index: 1000;
   }
-  
+  .user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Hace la imagen circular */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin perder proporciones */
+  }
   .logo img {
     height: 120px;
   }
@@ -15,7 +20,7 @@ mat-toolbar {
   }
   .bienvenido-texto {
     margin-right: 16px;
-    color: #fff;
+    color: #000000;
     font-weight: 500;
   }
 
@@ -68,12 +73,10 @@ mat-toolbar {
     margin: 0 2px;
   }
   
-  /* Mejoras visuales para los botones de acción */
   .product-actions mat-icon {
-    font-size: 20px; /* Tamaño del icono */
+    font-size: 20px; 
   }
   
-  /* Asegúrate de que los dividers sean visibles */
   mat-divider {
     margin: 5px 0;
   }

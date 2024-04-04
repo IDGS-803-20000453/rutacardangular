@@ -34,6 +34,13 @@
     <!-- Campo de archivo -->
     <input *ngSwitchCase="'file'" type="file" (change)="onFileSelected($event, field.name)" class="mb-2"/>
 
+    <!-- Campo de fecha -->
+    <input *ngSwitchCase="'date'" type="date"
+           [attr.name]="field.name"
+           [(ngModel)]="field.value"
+           class="w-full border p-2 rounded"/>
+  
+
     <!-- Mensaje de pago exitoso -->
     <div *ngSwitchCase="'message'" class="payment-success-message" [@fadeInOut]>
       {{ field.message }}

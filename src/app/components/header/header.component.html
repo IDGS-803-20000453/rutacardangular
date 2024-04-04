@@ -1,21 +1,23 @@
-
 <mat-toolbar color="primary" style="background-color: white; color: #333; box-shadow: 0 5px 4px rgba(100, 164, 255, 0.5);">
   <a href="/" class="logo" style="margin-top: 20px;">
     <img src="assets/rotacart.png" alt="RutaCard Logo" class="h-40">
   </a>
   <span class="spacer"></span>
-  <button mat-button routerLink="/login">Iniciar sesión</button>
-  <button mat-button routerLink="/signup">Registrarse</button>
-
+  <button mat-button routerLink="/login" *ngIf="!(authService.isLoggedIn | async)">Iniciar sesión</button>
+  <button mat-button routerLink="/signup" *ngIf="!(authService.isLoggedIn | async)">Registrarse</button>
   
   <ng-container *ngIf="authService.isLoggedIn | async; else loggedOut">
     <span class="bienvenido-texto" *ngIf="authService.isLoggedIn | async" @fadeInOut>Bienvenido, {{ authService.currentUserValue?.nombre }}</span>
     <button mat-icon-button [matMenuTriggerFor]="menuUsuario" aria-label="Cuenta de usuario">
-      <mat-icon>account_circle</mat-icon>
+      <img *ngIf="authService.currentUserValue?.imagenURL; else defaultIcon" [src]="authService.currentUserValue?.imagenURL" class="user-image" alt="Imagen de perfil">
+      <ng-template #defaultIcon>
+        <mat-icon>account_circle</mat-icon>
+      </ng-template>
     </button>
     <mat-menu #menuUsuario="matMenu">
       <button mat-menu-item routerLink="/client/pedidos-client">Mis Pedidos</button>
       <button mat-menu-item routerLink="/envios">Mis Envíos</button>
+      <button mat-menu-item routerLink="/client/config">Configuración</button>
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="authService.logout()">Cerrar sesión</button>
     </mat-menu>

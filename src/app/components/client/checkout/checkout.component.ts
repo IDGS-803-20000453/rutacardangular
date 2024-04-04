@@ -112,7 +112,35 @@ export class CheckoutComponent implements OnInit {
     if (error) {
       console.error('Error al crear token:', error);
     } else {
+      //llamar a la api para generar el pedido
+
       console.log('Token:', token);
+      console.log("Detalles de la compra:", {
+        totalGeneral: this.totalGeneral,
+        productos: this.productosCarrito,
+        direccionEnvio: this.direccionEnvio,
+        pesoTotal: this.pesoTotal,
+        volumenTotal: this.volumenTotal
+
+        });
+
+        const usuarioID = this.authService.currentUserValue?.usuarioId ?? 0;
+        const pedidoEnvio = {
+          usuarioID: usuarioID, 
+          direccionEnvio: this.direccionEnvio,
+          pesoTotal: this.pesoTotal,
+          volumenTotal: this.volumenTotal,
+        };
+
+        this.authApiService.AgregarPedidoEnvio(pedidoEnvio).subscribe({
+          next: (response) => {
+            console.log('Pedido de envío creado exitosamente:', response);
+            this.mostrarResumenCompra(); // Llamar a la función para mostrar el resumen de la compra
+          },
+          error: (err) => {
+            console.error('Error al crear el pedido de envío:', err);
+          }
+        });
       this.mostrarResumenCompra(); // Llamar a la función para mostrar el resumen de la compra
     }
   }
@@ -129,7 +157,8 @@ export class CheckoutComponent implements OnInit {
       if (error) {
         console.error('Error al crear token:', error);
       } else {
-        console.log('Token:', token);
+        console.log('Token :', token);
+        
         this.mostrarResumenCompra(); // Llamar a la función para mostrar el resumen de la compra
       }
     } catch (error) {
@@ -139,6 +168,7 @@ export class CheckoutComponent implements OnInit {
 
   mostrarResumenCompra() {
     this.mostrarResumen = true; // Mostrar el modal de resumen
+
   }
 
   cerrarModal(): void {

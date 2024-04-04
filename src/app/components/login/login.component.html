@@ -4,21 +4,35 @@
       <mat-card-title>Iniciar Sesión</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (ngSubmit)="login()">
+      <form (ngSubmit)="login()" #loginForm="ngForm">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="email" name="email" placeholder="Ingresa tu email">
+          <input matInput [(ngModel)]="email" name="email" required email #emailField="ngModel" placeholder="Ingresa tu email">
+          <mat-error *ngIf="emailField.invalid && emailField.touched">
+            <span *ngIf="emailField.errors?.['required']">El Email es requerido.</span>
+            <span *ngIf="emailField.errors?.['email']">Por favor, ingresa un Email válido.</span>
+          </mat-error>
+          
+          
         </mat-form-field>
         
         <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Ingresa tu contraseña">
+          <input matInput type="password" [(ngModel)]="password" name="password" required minlength="6" #passwordField="ngModel" placeholder="Ingresa tu contraseña">
+          <mat-error *ngIf="passwordField.invalid && passwordField.touched">
+            <span *ngIf="passwordField.errors?.['required']">La contraseña es requerida.</span>
+          </mat-error>
+          
         </mat-form-field>
-        
+        <br>
+        <br>
         <p><a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a></p>
         
-        <button mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
       </form>
+      
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      
     </mat-card-content>
     <mat-card-actions>
       <p>¿No tienes una cuenta? <a routerLink="/signup">Registrarse</a></p>

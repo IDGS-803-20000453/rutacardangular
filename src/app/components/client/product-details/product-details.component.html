@@ -1,0 +1,23 @@
+<div *ngIf="product" class="product-detail-container">
+    <button (click)="goBack()" class="back-button">Regresar</button>
+        <div class="product-image">
+      <img [src]="product.imagenURL" alt="{{ product.nombre }}">
+    </div>
+    <div class="product-details">
+      <h2>{{ product.nombre }}</h2>
+      <p class="description">{{ product.descripcion }}</p>
+      <p class="price">Precio: ${{ product.precio }}</p>
+      <p>Peso: {{ product.peso }} kg</p>
+      <p>Volumen: {{ product.volumen }} cm³</p>
+      <p>Stock disponible: {{ product.stock }}</p>
+      <div class="actions">
+        <button (click)="Add()" mat-raised-button color="primary" class="add-to-cart">Agregar al Carrito</button>
+        <button (click)="AddAndPay()" mat-raised-button color="accent">Comprar Ahora</button>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+  

@@ -48,6 +48,10 @@ insertProduct(product: any): Observable<any> {
 getProducts(): Observable<any> {
   return this.http.get(this.productsUrl);
 }
+getProduct(id: number): Observable<any> {
+  return this.http.get<any>(`${this.productsUrl}/${id}`);
+}
+
 deleteProduct(id: number): Observable<any> {
   return this.http.delete(`${this.productsUrl}/${id}`);
 }
@@ -59,7 +63,9 @@ updateProduct(product: any): Observable<any> {
 private enviosUrl = 'https://www.bazarapi.somee.com/api/Envios';
 
 patchEnvio(envio: any): Observable<any> {
-  return this.http.patch(`${this.enviosUrl}/${envio.envioID}`, envio);
+  // api/Envios/ActualizarEstado
+  const url = `${this.enviosUrl}/ActualizarEstado`;
+  return this.http.patch(`${url}/${envio.envioID}`, envio);
 }
 
 putEnvio(envio: any): Observable<any> {
@@ -119,7 +125,30 @@ getAllOrders(): Observable<any> {
   const url = `${this.ordersUrl}/PedidoEnvio/Todos`;
   return this.http.get(url);
 }
+//agregar pedido envio en api/pedidos/crear
+AgregarPedidoEnvio(pedidoEnvio: any): Observable<any> {
+  const url = `${this.ordersUrl}/Crear`;
+  return this.http.post(url, pedidoEnvio);
+}
 
+// --------------------- configuración del perfil para el usuario, metodo patch ---------------------
+private profileUrl = 'https://www.bazarapi.somee.com/api/Usuarios';
+
+patchProfile(user: any): Observable<any> {
+  const url = `${this.profileUrl}/${user.usuarioId}`;
+  return this.http.patch(url, user);
+}
+
+//getUsuario por id
+getUsuario(usuarioId: number): Observable<any> {
+  const url = `${this.profileUrl}/${usuarioId}`;
+  return this.http.get(url);
+}
+
+//getAllUsuarios
+getAllUsuarios(): Observable<any> {
+  return this.http.get(this.profileUrl);
+}
 
 
   

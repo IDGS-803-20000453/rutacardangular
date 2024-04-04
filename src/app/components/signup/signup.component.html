@@ -5,29 +5,43 @@
         <mat-card-title>Registrarse</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <form (ngSubmit)="signUp()">
+        <form (ngSubmit)="signUp()" #signupForm="ngForm">
           <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="nombre" name="nombre" placeholder="Ingresa tu nombre">
+            <input matInput [(ngModel)]="nombre" (ngModelChange)="nombre = $event.toUpperCase()" name="nombre" required placeholder="Ingresa tu nombre">
           </mat-form-field>
           
           <mat-form-field appearance="fill">
             <mat-label>Apellido</mat-label>
-            <input matInput [(ngModel)]="apellido" name="apellido" placeholder="Ingresa tu apellido">
+            <input matInput [(ngModel)]="apellido" (ngModelChange)="apellido = $event.toUpperCase()" name="apellido" required placeholder="Ingresa tu apellido">
           </mat-form-field>
-  
+        
           <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput [(ngModel)]="email" name="email" placeholder="Ingresa tu email" type="email">
+            <input matInput [(ngModel)]="email" name="email" required email placeholder="Ingresa tu email" type="email">
           </mat-form-field>
           
           <mat-form-field appearance="fill">
             <mat-label>Contraseña</mat-label>
-            <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Crea una contraseña">
+            <input matInput type="password" [(ngModel)]="password" name="password" required minlength="8" placeholder="Crea una contraseña">
           </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Repetir Contraseña</mat-label>
+            <input matInput type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required placeholder="Repite tu contraseña" #confirmPasswordField="ngModel">
+          </mat-form-field>
+
+          <div *ngIf="password && confirmPassword && password === confirmPassword" class="password-match">
+            <mat-icon color="primary">check_circle</mat-icon>
+            <span>Las contraseñas coinciden</span>
+          </div>
+          <div *ngIf="password && confirmPassword && password !== confirmPassword" class="password-mismatch">
+            <span>Las contraseñas no coinciden</span>
+          </div>
           
-          <button mat-raised-button color="primary" type="submit">Registrarse</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">Registrarse</button>
         </form>
+        
       </mat-card-content>
       <mat-card-actions>
         <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a></p>

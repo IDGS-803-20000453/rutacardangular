@@ -38,6 +38,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         const currentUser = this.authService.currentUserValue;
         if (currentUser) {
           console.log('UsuarioID desde header:', currentUser.usuarioId);
+          //imagenURL desde header
+          console.log('imagenURL desde header:', currentUser.imagenURL);
           this.cargarProductosCarrito();
           this.subs.add(
             this.carritoEstadoService.totalProductos$.subscribe(total => {
@@ -65,7 +67,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.authApiService.AgregarOActualizarProducto(usuarioID, productoID, 1).subscribe({
         next: () => {
           console.log('Producto agregado con éxito');
-          // Aquí podrías recargar los productos del carrito o actualizar la UI según sea necesario
           this.cargarProductosCarrito();
         },
         error: (error) => console.error('Error al agregar producto:', error),
@@ -81,7 +82,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.authApiService.reducirProductoDelCarrito(usuarioID, productoID).subscribe({
         next: () => {
           console.log('Producto quitado con éxito');
-          // Aquí podrías recargar los productos del carrito o actualizar la UI según sea necesario
           this.cargarProductosCarrito();
         },
         error: (error) => console.error('Error al quitar producto:', error),
@@ -104,7 +104,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.productosCarrito = [];
           this.totalProductos = 0;
           this.totalGeneral = 0;
-          // Opcional: Emitir un evento o llamar a un método para recargar los datos necesarios
           this.carritoEstadoService.solicitarRecargaProductos();
         },
         error: (error) => console.error('Error al vaciar el carrito:', error),
@@ -130,7 +129,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           console.error('Error al cargar productos del carrito:', err);
           this.productosCarrito = null;
           this.totalProductos = 0;
-          this.totalGeneral = 0; // Resetea el total general a 0 si hay un error
+          this.totalGeneral = 0; 
         }
       });
     }

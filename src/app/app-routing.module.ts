@@ -16,9 +16,11 @@ import { AboutComponent } from './components/about/about.component';
 import { PedidosComponent } from './components/admin/pedidos/pedidos.component';
 import { EnviosComponent } from './components/admin/envios/envios.component';
 import { PedidosClientComponent } from './components/client/pedidos-client/pedidos-client.component';
+import { ConfigComponent } from './components/client/config/config.component';
+import { ProductDetailsComponent } from './components/client/product-details/product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }, // Ruta predeterminada dirigida al HomeComponent
+  { path: '', component: HomeComponent }, 
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
@@ -35,6 +37,8 @@ const routes: Routes = [
   { path: 'admin/envios', component: EnviosComponent },
   { path: 'admin/pedidos', component: PedidosComponent },
   { path: 'client/pedidos-client', component: PedidosClientComponent },
+  { path: 'client/config', component: ConfigComponent },
+  { path: 'client/product-details/:id', component: ProductDetailsComponent },
 ];
 
 @NgModule({

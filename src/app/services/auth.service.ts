@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user.model'; // Asegúrate de tener este modelo definido
+import { User } from '../models/user.model'; 
+import { Router } from '@angular/router'; 
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,10 @@ export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
   private currentUser = new BehaviorSubject<User | null>(null);
 
-  constructor() {
+  constructor(    private router: Router
+    ) {
     this.loadUserFromLocalStorage();
+
   }
 
   get isLoggedIn(): Observable<boolean> {
@@ -28,8 +31,9 @@ export class AuthService {
     const userInfo = {
       usuarioId: response.usuarioId,
       email: response.email,
-      nombre: response.nombre, // Asegúrate de que este campo esté presente en la respuesta
+      nombre: response.nombre, 
       rolId: response.rolId,
+      imagenURL: response.imagenURL,
       nombreRol: response.nombreRol,
     };
     localStorage.setItem('userInfo', JSON.stringify(userInfo)); // Convierte el objeto del usuario a string para almacenarlo
@@ -53,9 +57,10 @@ export class AuthService {
   
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('userInfo'); // Asegúrate de limpiar también la información del usuario
+    localStorage.removeItem('userInfo'); 
     this.currentUser.next(null);
     this.isAuthenticated.next(false);
+    this.router.navigate(['/']);
   }
   
 }
