@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AuthApiService } from 'src/app/services/auth-api.service';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatPaginator } from '@angular/material/paginator'; // Importa MatPaginator
+import { AuthApiService } from 'src/app/services/auth-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedidos-client',
@@ -10,82 +12,75 @@ import { MatPaginator } from '@angular/material/paginator'; // Importa MatPagina
   styleUrls: ['./pedidos-client.component.css']
 })
 export class PedidosClientComponent implements OnInit {
-  totalGeneral: number = 0;
-  productosCarrito: any[] = [];
-  totalProductos: number = 0;
-  pesoTotal: number = 0;
-  volumenTotal: number = 0;
-
   dataSource: MatTableDataSource<any>;
-  selectedProduct: any; // Variable para almacenar el producto seleccionado
-
-  @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator; // Define MatPaginator
+  @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
 
   constructor(
+    private authApiService: AuthApiService,
+    public dialog: MatDialog,
+    private changeDetectorRef: ChangeDetectorRef,
     public authService: AuthService,
-    public authApiService: AuthApiService
+    private router: Router
   ) {
-    this.dataSource = new MatTableDataSource();
+    this.dataSource = new MatTableDataSource<any>();
   }
 
   ngOnInit() {
-    //this.cargarProductosCarrito();
-    this.getPedidos();
+    this.getPedidosClient();
+    const currentUser = this.authService.currentUserValue;
+    if (currentUser) {
+      console.log('UsuarioID desde home:', currentUser.usuarioId);
+    }
   }
 
- /* cargarProductosCarrito() {
-    const usuarioID = this.authService.currentUserValue?.usuarioId;
-    if (usuarioID) {
-      this.authApiService.obtenerDetalleCarritoPorUsuario(usuarioID).subscribe({
-        next: (productos) => {
-          this.productosCarrito = productos;
-          this.dataSource.data = this.productosCarrito;
-          this.totalProductos = this.productosCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-          this.totalGeneral = this.productosCarrito.reduce((acc, producto) => acc + (producto.cantidad * producto.precio), 0);
-          this.pesoTotal = this.productosCarrito.reduce((acc, producto) => acc + (producto.cantidad * producto.peso), 0);
-          this.volumenTotal = this.productosCarrito.reduce((acc, producto) => acc + (producto.cantidad * producto.volumen), 0);
+  getPedidosClient() {
+    const currentUser = this.authService.currentUserValue;
+    if (currentUser && currentUser.usuarioId) {
+      this.authApiService.getAllOrdersAndShippingByUser(currentUser.usuarioId).subscribe({
+        next: (data) => {
+          const pedidosTransformados = this.transformarPedidos(data);
+          console.log('Pedidos Transformados:', pedidosTransformados); // Aquí agregamos el console.log
+          this.dataSource.data = pedidosTransformados;
+          if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+          }
         },
-        error: (err) => {
-          console.error('Error al cargar productos del carrito:', err);
-          this.clearProductData();
-        }
+        error: (err) => console.error('Error fetching orders:', err),
       });
     } else {
-      console.error('Usuario no autenticado.');
+      console.error('No se pudo obtener el usuarioID');
     }
-  }*/
-
-  clearProductData() {
-    this.productosCarrito = [];
-    this.dataSource.data = [];
-    this.totalProductos = 0;
-    this.totalGeneral = 0;
-    this.pesoTotal = 0;
-    this.volumenTotal = 0;
+  }
+  verPedido(pedidoID: number) {
+    console.log('PedidoID:', pedidoID);
   }
 
-  openDetails(row: any) {
-    this.selectedProduct = row; // Almacena el producto seleccionado
-  }
-
-  closeDetails() {
-    this.selectedProduct = null; // Limpia el producto seleccionado al cerrar los detalles
-  }
-
-  getPedidos() {
-    this.authApiService.getAllOrdersGroup().subscribe({
-      next: (data) => {
-        console.log("Datos recibidos:", data); 
-        this.dataSource.data = data; 
-        if (this.paginator) {
-          this.dataSource.paginator = this.paginator;
-        }
-      },
-      error: (err) => {
-        console.error('Error al obtener pedidos:', err);
-        // Limpia los datos del pedido en caso de error
-        this.dataSource.data = [];
+  transformarPedidos(data: any[]) {
+    const agrupadosPorPedido = data.reduce((acc, curr) => {
+      if (!acc[curr.pedidoID]) {
+        acc[curr.pedidoID] = { ...curr, imagenURL: [curr.imagenURL], nombreProducto: [curr.nombreProducto] };
+      } else {
+        acc[curr.pedidoID].imagenURL.push(curr.imagenURL);
+        acc[curr.pedidoID].nombreProducto.push(curr.nombreProducto);
       }
-    });
+      return acc;
+    }, {});
+
+    return Object.values(agrupadosPorPedido).map((pedido: any) => ({
+      ...pedido,
+      imagenURL: pedido.imagenURL.join(', '),
+      nombreProducto: pedido.nombreProducto.join(', ')
+    }));
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  mostrarDetallesPedidoEnvio(pedidoID: number): void {
+    console.log('ID del pedido seleccionado:', pedidoID);
+    this.router.navigate(['/client/pedido-envio-details', pedidoID]);
+  }
+
 }

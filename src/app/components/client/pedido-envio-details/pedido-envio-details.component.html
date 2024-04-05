@@ -1,0 +1,60 @@
+<div [@fadeInOut] class="category-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Buscar Pedido</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Introduce términos de búsqueda">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button (click)="goBack()" class="back-button">Regresar</button>
+
+    <!-- Card de encabezado con información común del pedido -->
+    <div *ngIf="dataSource.filteredData.length > 0" class="order-header">
+        <mat-card class="pedido-card">
+            <div class="card-content">
+                <p class="fecha-pedido">Fecha de Pedido: {{ dataSource.filteredData[0].fechaPedido | date: 'medium' }}</p>
+                <p class="estado-envio" [ngClass]="{'entregado': dataSource.filteredData[0].estadoEnvio === 'Entregado', 'pendiente': dataSource.filteredData[0].estadoEnvio !== 'Entregado'}">Estado de Envío: {{ dataSource.filteredData[0].estadoEnvio }}</p>
+                <p class="direccion-envio">Dirección de Envío: {{ dataSource.filteredData[0].direccionEnvio }}</p>
+                <p class="fecha-entrega">Fecha de Entrega Estimada: {{ dataSource.filteredData[0].fechaEntregaEstimada ? (dataSource.filteredData[0].fechaEntregaEstimada | date: 'medium') : 'No disponible' }}</p>
+                <p class="total">Total: {{ dataSource.filteredData[0].total | currency }}</p>
+                <div class="shipping-progress">
+                    <!-- Bolita 1: Siempre visible y verde -->
+                    <div class="progress-step bolita1"></div>
+                    
+                    <!-- Línea 1: Siempre visible, color cambia con el estado -->
+                    <div class="progress-line linea1" [ngClass]="{'activo': mostrarBolita2}"></div>
+                    
+                    <!-- Bolita 2: Siempre visible, color cambia con el estado -->
+                    <div class="progress-step bolita2" [ngClass]="{'activo': mostrarBolita2}"></div>
+                    
+                    <!-- Línea 2: Siempre visible, color cambia con el estado -->
+                    <div class="progress-line linea2" [ngClass]="{'activo': mostrarBolita3}"></div>
+                    
+                    <!-- Bolita 3: Siempre visible, color cambia con el estado -->
+                    <div class="progress-step bolita3" [ngClass]="{'activo': mostrarBolita3}"></div>
+                </div>
+                
+                
+                
+                
+                  
+                
+            </div>
+        </mat-card>
+    </div>
+
+    <!-- Cards de productos específicos -->
+    <div class="cards-flex-container">
+        <div class="card-container" *ngFor="let producto of dataSource.filteredData">
+            <mat-card class="pedido-card">
+                <div class="product-details">
+                    <div class="product-images">
+                        <img [src]="producto.imagenURL" class="product-image">
+                    </div>
+                    <h2 class="product-name">{{ producto.nombreProducto }}</h2>
+                    <p class="cantidad">Cantidad: {{ producto.cantidad }}</p>
+                    <p class="precio">Precio: {{ producto.precio | currency }}</p>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

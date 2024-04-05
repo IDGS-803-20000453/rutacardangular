@@ -1,0 +1,147 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .cards-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centra los cards horizontalmente */
+  }
+  
+  .card-container {
+    flex: 1;
+    min-width: 320px; /* Asegura un ancho mínimo para cada card, ajusta según necesidad */
+    max-width: 480px; /* Limita el ancho máximo para mantener los cards legibles */
+  }
+  
+  .pedido-card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .card-content, .product-details {
+    padding: 10px;
+  }
+  
+  .product-images {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .product-image {
+    width: 100px; /* Ajuste según la necesidad */
+    height: 100px; /* Mantiene la imagen cuadrada */
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+  }
+  
+  .product-name {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    text-align: center; /* Centra el nombre del producto */
+  }
+  
+  .fecha-pedido, .estado-envio, .direccion-envio, .fecha-entrega, .cantidad, .precio {
+    margin: 5px 0;
+    text-align: center; /* Asegura que el texto esté centrado para una lectura fácil */
+  }
+  
+  .estado-envio.entregado {
+    color: #4CAF50; /* Un verde más suave */
+  }
+  
+  .estado-envio.pendiente {
+    color: #FF9800; /* Un naranja para indicar pendiente */
+  }
+  
+  .total {
+    font-weight: bold;
+    text-align: center; /* Centra el total */
+  }
+  
+  .ver-pedido-btn {
+    margin-top: 10px;
+    background-color: #80CBC4; /* Un verde claro, casi tocando el azul */
+    color: white;
+    align-self: center; /* Centra el botón en el card */
+  }
+  
+  .ver-pedido-btn:hover {
+    background-color: #4DB6AC;
+  }
+  
+  .back-button {
+    align-self: flex-start; /* Alinea el botón a la izquierda */
+    margin-bottom: 20px; /* Separación con el contenedor del producto */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 18px; /* Tamaño de la letra */
+    font-weight: bold; /* Hace la letra más visible */
+    color: #333; /* Color del texto */
+    background-color: transparent; /* Fondo transparente */
+    border: 2px solid #333; /* Borde sólido que combina con el texto */
+    border-radius: 25px; /* Bordes redondeados para suavizar la apariencia */
+    cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+    transition: all 0.3s ease; /* Transición suave al interactuar */
+  }
+  .back-button:hover {
+    background-color: #333; /* Cambia el fondo al pasar el mouse */
+    color: #fff; /* Texto blanco para contraste */
+  }
+
+  .order-header {
+    width: 100%;
+  }
+
+
+  
+  
+    /* Ajuste adicional para hacer los botones más prominentes */
+
+    .shipping-progress {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Espacia los elementos uniformemente */
+        width: 100%; /* Ajusta esto según necesites */
+    }
+    
+    .progress-step, .progress-line {
+        background-color: #ddd; /* Gris por defecto para todos inicialmente */
+    }
+    
+    .progress-step {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        /* Aquí podrías agregar estilos específicos para cada bolita si es necesario */
+    }
+    
+    .progress-line {
+        flex-grow: 1;
+        height: 2px;
+        margin: 0 10px; /* Ajusta el espaciado alrededor de las líneas */
+        /* Estilos específicos para las líneas si es necesario */
+    }
+    
+    .bolita1 {
+        background-color: #4CAF50; /* Verde */
+    }
+
+    .bolita2 {
+        background-color: #4CAF50; /* Verde */
+    }
+
+    .bolita3 {
+        background-color: #4CAF50; /* Verde */
+    }
+
+    .activo {
+        background-color: #4CAF50; /* Verde */
+    }
+    /* Aquí podrías añadir estilos específicos para bolita1, bolita2, bolita3, linea1, linea2 si lo necesitas */
+    

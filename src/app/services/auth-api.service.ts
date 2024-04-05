@@ -125,6 +125,15 @@ getAllOrders(): Observable<any> {
   const url = `${this.ordersUrl}/PedidoEnvio/Todos`;
   return this.http.get(url);
 }
+getAllOrdersByUser(userId: number): Observable<any> {
+  const url = `${this.ordersUrl}/PedidoEnvio/Agrupado/PorUsuario/${userId}`;
+  return this.http.get(url);
+}
+
+getAllOrdersAndShippingByUser(userId: number): Observable<any> {
+  const url = `${this.ordersUrl}/PedidoEnvio/PorUsuario/${userId}`;
+  return this.http.get(url);
+}
 //agregar pedido envio en api/pedidos/crear
 AgregarPedidoEnvio(pedidoEnvio: any): Observable<any> {
   const url = `${this.ordersUrl}/Crear`;

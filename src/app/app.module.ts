@@ -66,6 +66,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PedidosClientComponent } from './components/client/pedidos-client/pedidos-client.component';
 import { ConfigComponent } from './components/client/config/config.component';
 import { ProductDetailsComponent } from './components/client/product-details/product-details.component';
+import { PedidoEnvioDetailsComponent } from './components/client/pedido-envio-details/pedido-envio-details.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { ProductDetailsComponent } from './components/client/product-details/pro
     PedidosClientComponent,
     ConfigComponent,
     ProductDetailsComponent,
+    PedidoEnvioDetailsComponent,
   ],
   imports: [
     BrowserModule,

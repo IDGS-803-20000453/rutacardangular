@@ -1,0 +1,86 @@
+.category-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 20px;
+    padding: 0 500px; /* Ajusta según necesidad */
+    justify-content: center; /* Centra los elementos en el contenedor cuando no ocupan todo el ancho */
+  }
+  
+  
+  .pedido-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Opcional: añade una sombra para darle un efecto elevado a las tarjetas */
+  }
+  
+  .card-header {
+    text-align: center;
+  }
+  
+  .product-images {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+  }
+  
+  .product-name {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .card-content {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .fecha-pedido, .estado-envio, .direccion-envio {
+    margin: 5px 0;
+  }
+  
+  .estado-envio.entregado {
+    color: green;
+  }
+  
+  .estado-envio.pendiente {
+    color: orange;
+  }
+  
+  .card-footer {
+    padding: 10px;
+    background: #f0f0f0;
+    text-align: right;
+  }
+  
+  .total {
+    font-weight: bold;
+  }
+  
+  .ver-pedido-btn {
+    background-color: #80CBC4; /* Un verde claro que casi toca el azul */
+    color: white;
+  }
+  
+  .ver-pedido-btn:hover {
+    background-color: #4DB6AC; /* Un poco más oscuro al pasar el ratón */
+  }
+  
+  .pedido-card {
+    cursor: pointer; /* Indica que el elemento es clickeable */
+    /* Tus otros estilos */
+  }
+  

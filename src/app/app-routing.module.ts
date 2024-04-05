@@ -18,7 +18,7 @@ import { EnviosComponent } from './components/admin/envios/envios.component';
 import { PedidosClientComponent } from './components/client/pedidos-client/pedidos-client.component';
 import { ConfigComponent } from './components/client/config/config.component';
 import { ProductDetailsComponent } from './components/client/product-details/product-details.component';
-
+import { PedidoEnvioDetailsComponent } from './components/client/pedido-envio-details/pedido-envio-details.component';
 const routes: Routes = [
   { path: '', component: HomeComponent }, 
   { path: 'home', component: HomeComponent },
@@ -39,6 +39,7 @@ const routes: Routes = [
   { path: 'client/pedidos-client', component: PedidosClientComponent },
   { path: 'client/config', component: ConfigComponent },
   { path: 'client/product-details/:id', component: ProductDetailsComponent },
+  { path: 'client/pedido-envio-details/:pedidoID', component: PedidoEnvioDetailsComponent },
 ];
 
 @NgModule({
