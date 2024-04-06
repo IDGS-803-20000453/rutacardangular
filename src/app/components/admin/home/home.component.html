@@ -1,53 +1,46 @@
-<br>
-<br>
-<div class="dashboard">
-  <div class="grid grid-cols-3 gap-4">
-    <div class="col-span-1">
-      <div class="dashboard-card h-full bg-white p-6 rounded-md shadow-md">
-        <h3 class="text-xl font-semibold mb-4">Pedidos Pendientes</h3>
-        <p>5 pedidos aún no procesados.</p>
-      </div>
-    </div>
-  
-    <div class="col-span-1">
-      <div class="dashboard-card h-full bg-white p-6 rounded-md shadow-md">
-        <h3 class="text-xl font-semibold mb-4">Envíos Pendientes</h3>
-        <p>2 envíos pendientes de confirmación.</p>
-      </div>
-    </div>
-  
-    <div class="col-span-1">
-      <div class="dashboard-card h-full bg-white p-6 rounded-md shadow-md">
-        <h3 class="text-xl font-semibold mb-4">Inventario</h3>
-        <p>Gráfico de inventario aquí (estático).</p>
-      </div>
-    </div>
-  </div>
-  
-  
-  <br>
-  <br>
-    <mat-card class="welcome-card">
-      <mat-card-header>
-        <mat-card-title>Bienvenido, Admin</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>Consejo del día: "Revisa tu inventario semanalmente para evitar desabastecimientos".</p>
-      </mat-card-content>
-    </mat-card>
-  
-    <mat-card class="actions-card">
-      <mat-card-header>
-        <mat-card-title>Acciones Rápidas</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="actions-container">
-        <button mat-raised-button color="primary" aria-label="Crear nuevo producto">
-          <mat-icon>add_circle_outline</mat-icon> Nuevo Producto
-        </button>
-        <button mat-raised-button color="accent" aria-label="Gestionar inventario">
-          <mat-icon>inventory_2</mat-icon> Gestionar Inventario
-        </button>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+<div class="dashboard full-grid">
+  <!-- Inicio, utilizando el icono 'home' que ya es bastante representativo -->
+  <a mat-ripple routerLink="/admin/home" class="dashboard-card home">
+    <mat-icon>home</mat-icon>
+    <span>Inicio</span>
+  </a>
+
+  <!-- Productos, cambiando a un icono que puede representar productos/compras -->
+  <a mat-ripple routerLink="/admin/products" class="dashboard-card">
+    <mat-icon>shopping_cart</mat-icon>
+    <span>Productos</span>
+  </a>
+
+  <!-- Categorías, utilizando 'label' para representar las etiquetas/categorías -->
+  <a mat-ripple routerLink="/admin/categories" class="dashboard-card">
+    <mat-icon>label</mat-icon>
+    <span>Categorías</span>
+  </a>
+
+  <!-- Pedidos, 'receipt_long' puede representar mejor la idea de listados de pedidos -->
+  <a mat-ripple routerLink="/admin/pedidos" class="dashboard-card">
+    <mat-icon>receipt_long</mat-icon>
+    <span>Pedidos</span>
+  </a>
+
+  <!-- Envíos, utilizando 'local_shipping' que ya es adecuado, pero lo mantenemos para coherencia -->
+  <a mat-ripple routerLink="/admin/envios" class="dashboard-card">
+    <mat-icon>local_shipping</mat-icon>
+    <span>Envíos</span>
+  </a>
+
+  <!-- Proveedores, 'business_center' puede ser una mejor representación para negocios/proveedores -->
+  <a mat-ripple routerLink="/admin/proveedores" class="dashboard-card">
+    <mat-icon>business_center</mat-icon>
+    <span>Proveedores</span>
+  </a>
+</div>
+
+<mat-card class="welcome-card">
+  <mat-card-header>
+    <mat-card-title>Bienvenido, Admin</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Consejo del día: "Revisa tu inventario semanalmente para evitar desabastecimientos".</p>
+  </mat-card-content>
+</mat-card>

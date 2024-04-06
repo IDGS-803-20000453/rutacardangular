@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   pagedProducts: any[] = []; // Productos para la página actual
 // Propiedades para la paginación
 currentPage: number = 0;
-pageSize: number = 5; // Número de ítems por página
+pageSize: number = 10; // Número de ítems por página
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator; // Obtiene el paginador (si existe
   constructor(private authApiService: AuthApiService, 
     public authService: AuthService,

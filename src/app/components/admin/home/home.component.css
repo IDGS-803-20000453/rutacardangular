@@ -1,20 +1,41 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .dashboard-card {
-    height: 100%;
-  }
-  
-  .welcome-card, .actions-card {
-    background: #eceff1;
-  }
-  
-  .actions-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 20px;
+}
+
+.dashboard-card {
+  background: #fff;
+  padding: 30px; /* Aumentamos el padding para dar más espacio */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  transition: transform 0.3s ease;
+  height: 200px; /* Establecemos una altura fija para que sean más altos */
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+}
+
+.dashboard-card mat-icon {
+  font-size: 64px; /* Aumentamos el tamaño del icono */
+  margin-bottom: 15px; /* Ajustamos el margen */
+}
+
+.dashboard-card span {
+  font-size: 20px; /* Aumentamos el tamaño del texto */
+  font-weight: 500; /* Hacemos el texto un poco más grueso */
+}
+
+.full-grid .home {
+  grid-column: span 2;
+}
+
+.welcome-card, .actions-card {
+  background: #eceff1;
+}

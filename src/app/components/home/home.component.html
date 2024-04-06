@@ -87,6 +87,7 @@
   <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
 <div class="products-container grid grid-cols-3 gap-8 mt-64" @fadeIn>
+  
   <!-- Agrega el evento click aquí y llama a una nueva función mostrarDetallesProducto con el ID del producto como argumento -->
   <div *ngFor="let product of pagedProducts" class="p-8 max-w-lg border border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col items-center cursor-pointer"
        (click)="mostrarDetallesProducto(product.productoID)">
@@ -102,6 +103,8 @@
       </div>
     </div>
   </div>
+  <mat-paginator [length]="allProducts.length" [pageSize]="pageSize" [pageSizeOptions]="[10, 20, 30]" (page)="onPageChange($event)">
+  </mat-paginator>
 </div>
 
 
@@ -110,8 +113,7 @@
 
 
 
-<mat-paginator [length]="allProducts.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)">
-</mat-paginator>
+
 
 
 

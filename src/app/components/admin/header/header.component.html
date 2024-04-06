@@ -1,16 +1,15 @@
 <mat-toolbar color="primary" style="background-color: white; color: #333; box-shadow: 0 5px 4px rgba(100, 164, 255, 0.5);">
-  <a href="/" class="logo my-8">
+  <a href="/admin/" class="logo my-8">
     <img src="assets/rotacart.png" alt="RutaCard Logo" class="h-40">
 </a>
 
     <span class="spacer"></span>
-    <button mat-button routerLink="/admin/home">Inicio</button>
+    <button mat-button routerLink="/admin/">Inicio</button>
     <button mat-button routerLink="/admin/products">Productos</button>
     <button mat-button routerLink="/admin/categories">Categorías</button>
     <button mat-button routerLink="/admin/pedidos">Pedidos</button>
     <button mat-button routerLink="/admin/envios">Envíos</button>
     <button mat-button routerLink="/admin/proveedores">Proveedores</button>
-    <button mat-button routerLink="/admin/users">Usuarios</button>
     
     <ng-container *ngIf="authService.isLoggedIn | async">
       <button mat-icon-button [matMenuTriggerFor]="adminMenu" aria-label="Cuenta de administrador">
